@@ -1,17 +1,25 @@
 <?php
 
+/*
+ * This file is part of the blankqwq/mirai-sdk.
+ *
+ * (c) blankqwq <1136589038@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 use Blankqwq\Mirai\Mirai;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 
 class UnitTest extends \PHPUnit\Framework\TestCase
 {
-
 //    public function testMirai(){
 //    }
 
-
-    public function testApi(){
+    public function testApi()
+    {
         // 创建模拟接口响应值。
         $response = new Response(200, [], '{"success": true}');
 
@@ -25,7 +33,7 @@ class UnitTest extends \PHPUnit\Framework\TestCase
                 'city' => '深圳',
                 'output' => 'json',
                 'extensions' => 'base',
-            ]
+            ],
         ])->andReturn($response);
 
         // 将 `getHttpClient` 方法替换为上面创建的 http client 为返回值的模拟方法。
@@ -35,5 +43,4 @@ class UnitTest extends \PHPUnit\Framework\TestCase
         // 然后调用 `getWeather` 方法，并断言返回值为模拟的返回值。
         $this->assertSame(['success' => true], $w->http->verify('深圳'));
     }
-
 }

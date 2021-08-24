@@ -1,7 +1,15 @@
 <?php
 
-namespace Blankqwq\Mirai\Http;
+/*
+ * This file is part of the blankqwq/mirai-sdk.
+ *
+ * (c) blankqwq <1136589038@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
+namespace Blankqwq\Mirai\Http;
 
 use Blankqwq\Exceptions\MiraiHttpException;
 use Blankqwq\Mirai\Contract\ApiContract;
@@ -15,7 +23,10 @@ use Illuminate\Support\Facades\Cache;
 
 class Api implements ApiContract
 {
-    use MessageApi, ManageApi, GroupManageAPi, FileApi;
+    use MessageApi;
+    use ManageApi;
+    use GroupManageAPi;
+    use FileApi;
 
     public const SESSION_KEY_PREFIX = 'mirai_http_';
 
@@ -38,7 +49,7 @@ class Api implements ApiContract
 
     public function getSessionKey($clear = false)
     {
-        $key = self::SESSION_KEY_PREFIX . '' . $this->qq;
+        $key = self::SESSION_KEY_PREFIX.''.$this->qq;
         if (!$clear) {
             $data = Cache::get($key);
             if ($data) {
@@ -62,14 +73,16 @@ class Api implements ApiContract
             'tty' => time() + $this->tty,
         ];
         Cache::put($key, json_encode($data));
+
         return $sessionKey;
     }
 
     public function verify($verify)
     {
         $param = [
-            'verifyKey' => $verify
+            'verifyKey' => $verify,
         ];
+
         return $this->post(ApiEnum::VERIFY, $param);
     }
 
@@ -77,8 +90,9 @@ class Api implements ApiContract
     {
         $param = [
             'qq' => $qq,
-            'sessionKey' => $sessionKey
+            'sessionKey' => $sessionKey,
         ];
+
         return $this->post(ApiEnum::BIND, $param);
     }
 
@@ -86,8 +100,9 @@ class Api implements ApiContract
     {
         $param = [
             'qq' => $qq,
-            'sessionKey' => $sessionKey
+            'sessionKey' => $sessionKey,
         ];
+
         return $this->post(ApiEnum::RELEASE, $param);
     }
 
@@ -111,8 +126,7 @@ class Api implements ApiContract
 
     /**
      * @param $api
-     * @param array $param
-     * @return array
+     *
      * @throws MiraiHttpException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws MiraiException
@@ -134,19 +148,19 @@ class Api implements ApiContract
 
     private function request($method, $api, $param)
     {
-        while (True) {
+        while (true) {
             if (!empty($this->sessionKey)) {
                 $param['sessionKey'] = $this->sessionKey; //追加access_token到参数表
             }
-            if ($method === 'GET') {
+            if ('GET' === $method) {
                 $body = ['query' => $param];
             } else {
                 $body = ['json' => $param];
             }
-            $result = $this->client->request($method, $this->host . $api, $body);
-            \Log::info('request_data', [$this->host . $api, $method, $param, $result]);
-            $res = json_decode($result->getBody()->getContents(), true);;
-            if ($res['code'] === 3) {
+            $result = $this->client->request($method, $this->host.$api, $body);
+            \Log::info('request_data', [$this->host.$api, $method, $param, $result]);
+            $res = json_decode($result->getBody()->getContents(), true);
+            if (3 === $res['code']) {
                 $this->sessionKey = $this->getSessionKey(true);
                 \Log::info('reGetSession', [$this->sessionKey]);
             } else {
@@ -154,7 +168,6 @@ class Api implements ApiContract
             }
         }
     }
-
 
     /**
      * @throws MiraiHttpException
@@ -171,7 +184,7 @@ class Api implements ApiContract
         if ($data['code'] > 0) {
             throw new MiraiException($data['code']);
         }
+
         return $data;
     }
-
 }

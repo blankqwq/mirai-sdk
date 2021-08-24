@@ -1,22 +1,31 @@
 <?php
 
+/*
+ * This file is part of the blankqwq/mirai-sdk.
+ *
+ * (c) blankqwq <1136589038@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Blankqwq\Mirai\Message\MessageType;
 
 class MQ
 {
-    public static function MQ($type, $value = NULL)
+    public static function MQ($type, $value = null)
     {
-        $code = '[mirai:' . $type;
+        $code = '[mirai:'.$type;
         if ($value) {
-            $code .= (':' . is_array($value) ? implode(",", $value) : $value);
+            $code .= (':'.is_array($value) ? implode(',', $value) : $value);
         }
         $code .= ']';
+
         return $code;
     }
 
     /**
      * @param $qq
-     * @return string
      * @xxx
      */
     public static function At($qq): string
@@ -26,7 +35,6 @@ class MQ
 
     /**
      * @param $qq
-     * @return string
      * @全体
      */
     public static function AtALL($qq): string
@@ -36,8 +44,9 @@ class MQ
 
     /**
      * @param $id
+     *
      * @return string
-     * 闪照
+     *                闪照
      */
     public static function FlashImage($id): string
     {
@@ -46,8 +55,9 @@ class MQ
 
     /**
      * @param $id
+     *
      * @return string
-     * 原生表情
+     *                原生表情
      */
     public static function Face($id): string
     {
@@ -58,13 +68,14 @@ class MQ
      * @param $name
      * @param $pokeType
      * @param $id
+     *
      * @return string
-     * 搓一搓
+     *                搓一搓
      */
     public static function PokeMessage($name, $pokeType, $id): string
     {
         return self::MQ('poke', [
-            $name, $pokeType, $id
+            $name, $pokeType, $id,
         ]);
     }
 
@@ -72,20 +83,22 @@ class MQ
      * @param $id
      * @param $name
      * @param $count
+     *
      * @return string
-     * VIP表情
+     *                VIP表情
      */
     public static function VipFace($id, $name, $count): string
     {
         return self::CQ('vipface', [
-            $id, $name, $count
+            $id, $name, $count,
         ]);
     }
 
     /**
      * @param $content
+     *
      * @return string
-     * 小程序
+     *                小程序
      */
     public static function LightApp($content): string
     {
@@ -95,8 +108,9 @@ class MQ
     /**
      * @param $serviceId
      * @param $content
+     *
      * @return string
-     * 服务信息
+     *                服务信息
      */
     public static function SimpleServiceMessage($serviceId, $content): string
     {
@@ -106,8 +120,9 @@ class MQ
 
     /**
      * @param $value
+     *
      * @return string
-     * 魔法表情骰子
+     *                魔法表情骰子
      */
     public static function Dice($value): string
     {
@@ -116,8 +131,9 @@ class MQ
 
     /**
      * @param $args
+     *
      * @return string
-     * 音乐分享
+     *                音乐分享
      */
     public static function MusicShare($args): string
     {
@@ -129,13 +145,14 @@ class MQ
      * @param $internalId
      * @param $name
      * @param $size
+     *
      * @return string
-     * 文件分享
+     *                文件分享
      */
     public static function FileMessage($id, $internalId, $name, $size): string
     {
         return self::MQ('file', [
-            $id, $internalId, $name, $size
+            $id, $internalId, $name, $size,
         ]);
     }
 }

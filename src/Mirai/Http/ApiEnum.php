@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the blankqwq/mirai-sdk.
+ *
+ * (c) blankqwq <1136589038@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Blankqwq\Mirai\Http;
 
 class ApiEnum
@@ -47,7 +56,6 @@ class ApiEnum
     public const ADD_FRIEND_REQUEST = '/resp/newFriendRequestEvent';
     public const ADD_GROUP_MEMBER_REQUEST = '/resp/memberJoinRequestEvent';
     public const INVITE_ROBOT_REQUEST = '/resp/botInvitedJoinGroupRequestEvent';
-
 
     // 文件操作
     public const GET_FILE_LIST = '/file/list';

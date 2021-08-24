@@ -1,17 +1,26 @@
 <?php
 
+/*
+ * This file is part of the blankqwq/mirai-sdk.
+ *
+ * (c) blankqwq <1136589038@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Blankqwq\Mirai\Http\Traits;
 
 use Blankqwq\Mirai\Http\ApiEnum;
 
 trait GroupManageAPi
 {
-
     public function getGroupMembers($target)
     {
         $param = [
-            'target' => $target
+            'target' => $target,
         ];
+
         return $this->query(ApiEnum::GET_GROUP_MEMBERS, $param);
     }
 
@@ -23,9 +32,10 @@ trait GroupManageAPi
     public function getGroupMemInfo($target, $memberId)
     {
         $param = [
-            "target" => $target,
-            'memberId' => $memberId
+            'target' => $target,
+            'memberId' => $memberId,
         ];
+
         return $this->query(ApiEnum::GET_GROUP_MEMBER_INFO, $param);
     }
 
@@ -36,6 +46,7 @@ trait GroupManageAPi
             'member' => $member,
             'time' => $time,
         ];
+
         return $this->post(ApiEnum::MUTE, $param);
     }
 
@@ -45,6 +56,7 @@ trait GroupManageAPi
             'target' => $target,
             'member' => $member,
         ];
+
         return $this->post(ApiEnum::UNMUTE, $param);
     }
 
@@ -53,8 +65,9 @@ trait GroupManageAPi
         $param = [
             'target' => $target,
             'member' => $member,
-            'msg' => $msg
+            'msg' => $msg,
         ];
+
         return $this->post(ApiEnum::DELETE_GROUP_MEMBER, $param);
     }
 
@@ -63,6 +76,7 @@ trait GroupManageAPi
         $param = [
             'target' => $target,
         ];
+
         return $this->post(ApiEnum::MUTE_ALL, $param);
     }
 
@@ -71,6 +85,7 @@ trait GroupManageAPi
         $param = [
             'target' => $target,
         ];
+
         return $this->post(ApiEnum::UNMUTE_ALL, $param);
     }
 
@@ -79,6 +94,7 @@ trait GroupManageAPi
         $param = [
             'target' => $target,
         ];
+
         return $this->post(ApiEnum::QUIT_GROUP, $param);
     }
 
@@ -87,6 +103,7 @@ trait GroupManageAPi
         $param = [
             'target' => $message_id,
         ];
+
         return $this->post(ApiEnum::SET_ESSENCE, $param);
     }
 
@@ -95,6 +112,7 @@ trait GroupManageAPi
         $param = [
             'target' => $groupId,
         ];
+
         return $this->query(ApiEnum::GROUP_CONFIG, $param);
     }
 
@@ -105,14 +123,16 @@ trait GroupManageAPi
      * allowMemberInvite    true    Boolean    true    是否允许群员邀请
      * autoApprove    true    Boolean    true    是否开启自动审批入群
      * anonymousChat    true    Boolean    true    是否允许匿名聊天
+     *
      * @return mixed
      */
     public function setGroupConfig($groupId, $config)
     {
         $param = [
             'target' => $groupId,
-            'config' => $config
+            'config' => $config,
         ];
+
         return $this->post(ApiEnum::GROUP_CONFIG, $param);
     }
 
@@ -120,8 +140,9 @@ trait GroupManageAPi
     {
         $param = [
             'target' => $target,
-            'memberId' => $memberId
+            'memberId' => $memberId,
         ];
+
         return $this->query(ApiEnum::MEMBER_INFO, $param);
     }
 
@@ -129,18 +150,21 @@ trait GroupManageAPi
      * @param $target
      * @param $memberId
      * @param $info
+     *
      * @return mixed|null
+     *
      * @throws \Exception
-     * "name": "群名片",
-     * "specialTitle": "群头衔"
+     *                    "name": "群名片",
+     *                    "specialTitle": "群头衔"
      */
     public function setGroupMember($target, $memberId, $info)
     {
         $param = [
             'target' => $target,
             'memberId' => $memberId,
-            'info' => $info
+            'info' => $info,
         ];
+
         return $this->post(ApiEnum::MEMBER_INFO, $param);
     }
 
@@ -160,16 +184,16 @@ trait GroupManageAPi
      * "message":""
      * }
      */
-    public function addGroupRequest($eventId, $fromId, $groupId, $operate = 0, $message = "")
+    public function addGroupRequest($eventId, $fromId, $groupId, $operate = 0, $message = '')
     {
         $param = [
-            "eventId" => $eventId,
-            "fromId" => $fromId,
-            "groupId" => $groupId,
-            "operate" => $operate,
-            "message" => $message,
+            'eventId' => $eventId,
+            'fromId' => $fromId,
+            'groupId' => $groupId,
+            'operate' => $operate,
+            'message' => $message,
         ];
+
         return $this->post(ApiEnum::ADD_GROUP_MEMBER_REQUEST, $param);
     }
-
 }
