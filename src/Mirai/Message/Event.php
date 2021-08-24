@@ -35,9 +35,7 @@ class Event
      */
     private function parse($data)
     {
-
     }
-
 
     /**
      * @return mixed
@@ -103,68 +101,43 @@ class Event
         $this->type = $type;
     }
 
-    /**
-     * @return array
-     */
     public function getOperator(): array
     {
         return $this->operator;
     }
 
-    /**
-     * @param array $operator
-     */
     public function setOperator(array $operator): void
     {
         $this->operator = $operator;
     }
 
-    /**
-     * @return array
-     */
     public function getTarget(): array
     {
         return $this->target;
     }
 
-    /**
-     * @param array $target
-     */
     public function setTarget(array $target): void
     {
         $this->target = $target;
     }
 
-    /**
-     * @return array
-     */
     public function getGroup(): array
     {
         return $this->group;
     }
 
-    /**
-     * @param array $group
-     */
     public function setGroup(array $group): void
     {
         $this->group = $group;
     }
 
-    /**
-     * @return array
-     */
     public function getOrigin(): array
     {
         return $this->origin;
     }
 
-    /**
-     * @param array $origin
-     */
     public function setOrigin(array $origin): void
     {
         $this->origin = $origin;
     }
-
 }
