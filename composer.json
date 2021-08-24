@@ -1,0 +1,23 @@
+{
+  "name": "blankqwq/mirai-sdk",
+  "description": "a sdk for mirai",
+  "authors": [
+    {
+      "name": "blankqwq",
+      "email": "1136589038@qq.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Blankqwq\\Mirai\\": "./src/Mirai/"
+    }
+  },
+  "require": {
+    "guzzlehttp/guzzle": "^7.3",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5",
+    "mockery/mockery": "^1.4"
+  }
+}
