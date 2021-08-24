@@ -21,7 +21,6 @@ class Mirai
         'verify' => '',
         'tty' => 7200,
         'account' => [
-            '1136589922',
         ],
         'drivers' => [
             'http' => Api::class,
@@ -39,7 +38,7 @@ class Mirai
     public function session($qq = null)
     {
         if (is_null($qq)) {
-            $qq = $this->config['account'][0];
+            $qq = is_array($this->config['account']) ? $this->config['account'][0] : $this->config['account'];
         }
         if (isset($this->driver[$qq])) {
             return $this->driver[$qq];
