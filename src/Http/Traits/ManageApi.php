@@ -17,7 +17,9 @@ trait ManageApi
 {
     /**
      * @param $target
+     *
      * @return array
+     *
      * @throws \Blankqwq\Exceptions\MiraiHttpException
      * @throws \Blankqwq\Mirai\Exceptions\MiraiException
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -35,9 +37,11 @@ trait ManageApi
      * @param $eventId
      * @param $fromId
      * @param $groupId
-     * @param int $operate
+     * @param int    $operate
      * @param string $message
+     *
      * @return array
+     *
      * @throws \Blankqwq\Exceptions\MiraiHttpException
      * @throws \Blankqwq\Mirai\Exceptions\MiraiException
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -59,9 +63,11 @@ trait ManageApi
      * @param $eventId
      * @param $fromId
      * @param $groupId
-     * @param int $operate
+     * @param int    $operate
      * @param string $message
+     *
      * @return array
+     *
      * @throws \Blankqwq\Exceptions\MiraiHttpException
      * @throws \Blankqwq\Mirai\Exceptions\MiraiException
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -95,6 +101,7 @@ trait ManageApi
 
     /**
      * @return array
+     *
      * @throws \Blankqwq\Exceptions\MiraiHttpException
      * @throws \Blankqwq\Mirai\Exceptions\MiraiException
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -108,12 +115,12 @@ trait ManageApi
      * @return mixed|null
      *
      * @throws \Exception|\GuzzleHttp\Exception\GuzzleException
-     *                    "nickname":"nickname",
-     *                    "email":"email",
-     *                    "age":18,
-     *                    "level":1,
-     *                    "sign":"mirai",
-     *                    "sex":"UNKNOWN" // UNKNOWN, MALE, FEMALE
+     *                                                          "nickname":"nickname",
+     *                                                          "email":"email",
+     *                                                          "age":18,
+     *                                                          "level":1,
+     *                                                          "sign":"mirai",
+     *                                                          "sex":"UNKNOWN" // UNKNOWN, MALE, FEMALE
      */
     public function getRobotInfo()
     {
@@ -130,7 +137,9 @@ trait ManageApi
 
     /**
      * @param $target
+     *
      * @return array
+     *
      * @throws \Blankqwq\Exceptions\MiraiHttpException
      * @throws \Blankqwq\Mirai\Exceptions\MiraiException
      * @throws \GuzzleHttp\Exception\GuzzleException

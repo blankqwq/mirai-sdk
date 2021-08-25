@@ -63,6 +63,7 @@ class Mirai
 
     /**
      * @param $qq
+     *
      * @return Api
      */
     private function default($qq): ApiContract

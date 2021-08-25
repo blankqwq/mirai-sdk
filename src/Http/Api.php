@@ -25,7 +25,10 @@ use Illuminate\Support\Facades\Cache;
 
 class Api implements ApiContract
 {
-    use MessageApi, ManageApi, GroupManageAPi, FileApi;
+    use MessageApi;
+    use ManageApi;
+    use GroupManageAPi;
+    use FileApi;
 
     public const SESSION_KEY_PREFIX = 'mirai_http_';
 
@@ -53,7 +56,9 @@ class Api implements ApiContract
 
     /**
      * @param false $clear
+     *
      * @return mixed
+     *
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -64,7 +69,7 @@ class Api implements ApiContract
             // 表示关闭了session
             return null;
         }
-        $key = self::SESSION_KEY_PREFIX . '' . $this->qq;
+        $key = self::SESSION_KEY_PREFIX.''.$this->qq;
         if (!$clear) {
             $data = Cache::get($key);
             if ($data) {
@@ -94,7 +99,7 @@ class Api implements ApiContract
 
     /**
      * @param $verify
-     * @return array
+     *
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -111,7 +116,7 @@ class Api implements ApiContract
     /**
      * @param $qq
      * @param $sessionKey
-     * @return array
+     *
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -129,7 +134,9 @@ class Api implements ApiContract
     /**
      * @param $qq
      * @param $sessionKey
+     *
      * @return array
+     *
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -145,7 +152,6 @@ class Api implements ApiContract
     }
 
     /**
-     * @return array
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -166,8 +172,7 @@ class Api implements ApiContract
 
     /**
      * @param $api
-     * @param array $param
-     * @return array
+     *
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -179,8 +184,7 @@ class Api implements ApiContract
 
     /**
      * @param $api
-     * @param array $param
-     * @return array
+     *
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -194,7 +198,9 @@ class Api implements ApiContract
      * @param $method
      * @param $api
      * @param $param
+     *
      * @return array
+     *
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -210,8 +216,8 @@ class Api implements ApiContract
             } else {
                 $body = ['json' => $param];
             }
-            $result = $this->client->request($method, $this->host . $api, $body);
-            \Log::info('request_data', [$this->host . $api, $method, $param, $result]);
+            $result = $this->client->request($method, $this->host.$api, $body);
+            \Log::info('request_data', [$this->host.$api, $method, $param, $result]);
             $res = json_decode($result->getBody()->getContents(), true);
             if (MiraiErrorCode::SESSION_EXPIRE_ERR === $res['code']) {
                 $this->sessionKey = $this->getSessionKey(true);

@@ -11,7 +11,6 @@
 
 namespace Blankqwq\Mirai\Contract;
 
-
 interface ApiContract extends GroupApiContract, ManageApiContract, FileApiContract, MessageApiContract
 {
     public function __construct($qq, $host, $verify = '', $tty = 7200);
@@ -27,5 +26,4 @@ interface ApiContract extends GroupApiContract, ManageApiContract, FileApiContra
     public function countMessage(): array;
 
     public function about(): array;
-
 }
