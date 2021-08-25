@@ -11,6 +11,6 @@
 
 namespace Blankqwq\Mirai;
 
-class MiriaServiceProvider
+class StatusCode
 {
 }

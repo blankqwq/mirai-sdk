@@ -4,12 +4,12 @@
 
 > 用于在laravel 开发miria 机器人后端
 
-还在开发中
+开发中
 
-- [] 状态事件路由
-- [] Mirai-http 接口对接
-- [] Mirai 消息类型
-- [] Mirai-http-adaptor
+- [ ] 状态事件路由
+- [ ] Mirai-http 接口对接
+- [ ] Mirai 消息类型
+- [ ] Mirai-http-adaptor
     - http
     - websocket
 

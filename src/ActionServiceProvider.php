@@ -11,6 +11,15 @@
 
 namespace Blankqwq\Mirai;
 
-class ActionServiceProvider
+class ActionServiceProvider extends \Illuminate\Support\ServiceProvider
 {
+    protected $defer = true;
+
+    public function register()
+    {
+    }
+
+    public function provides()
+    {
+    }
 }

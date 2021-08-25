@@ -11,8 +11,13 @@
 
 namespace Blankqwq\Mirai\Facade;
 
+use Blankqwq\Mirai\Contract\ApiContract;
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * @see \Blankqwq\Mirai\Mirai
+ * @see ApiContract
+ */
 class Mirai extends Facade
 {
     /**

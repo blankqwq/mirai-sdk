@@ -9,7 +9,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Blankqwq\\Mirai\\": "./src/Mirai/"
+      "Blankqwq\\Mirai\\": "src/"
     }
   },
   "require": {
@@ -19,5 +19,12 @@
   "require-dev": {
     "phpunit/phpunit": "^9.5",
     "mockery/mockery": "^1.4"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Blankqwq\\Mirai\\MiriaServiceProvider"
+      ]
+    }
   }
 }
