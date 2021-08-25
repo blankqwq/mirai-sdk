@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static ApiContract session($qq = null)
+ *
  * @see \Blankqwq\Mirai\Mirai
  * @see ApiContract
  */
