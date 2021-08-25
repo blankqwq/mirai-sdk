@@ -15,6 +15,13 @@ use Blankqwq\Mirai\Http\ApiEnum;
 
 trait ManageApi
 {
+    /**
+     * @param $target
+     * @return array
+     * @throws \Blankqwq\Exceptions\MiraiHttpException
+     * @throws \Blankqwq\Mirai\Exceptions\MiraiException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function deleteFriend($target)
     {
         $param = [
@@ -24,6 +31,17 @@ trait ManageApi
         return $this->post(ApiEnum::DELETE_FRIEND, $param);
     }
 
+    /**
+     * @param $eventId
+     * @param $fromId
+     * @param $groupId
+     * @param int $operate
+     * @param string $message
+     * @return array
+     * @throws \Blankqwq\Exceptions\MiraiHttpException
+     * @throws \Blankqwq\Mirai\Exceptions\MiraiException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function solveAddFriend($eventId, $fromId, $groupId, $operate = 0, $message = '')
     {
         $param = [
@@ -37,6 +55,17 @@ trait ManageApi
         return $this->post(ApiEnum::ADD_FRIEND_REQUEST, $param);
     }
 
+    /**
+     * @param $eventId
+     * @param $fromId
+     * @param $groupId
+     * @param int $operate
+     * @param string $message
+     * @return array
+     * @throws \Blankqwq\Exceptions\MiraiHttpException
+     * @throws \Blankqwq\Mirai\Exceptions\MiraiException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function solveInviteGroupRequest($eventId, $fromId, $groupId, $operate = 0, $message = '')
     {
         $param = [
@@ -64,6 +93,12 @@ trait ManageApi
         return $this->post(ApiEnum::COMMAND, $param);
     }
 
+    /**
+     * @return array
+     * @throws \Blankqwq\Exceptions\MiraiHttpException
+     * @throws \Blankqwq\Mirai\Exceptions\MiraiException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function getFriendList()
     {
         return $this->query(ApiEnum::GET_FRIENDS);
@@ -72,7 +107,7 @@ trait ManageApi
     /**
      * @return mixed|null
      *
-     * @throws \Exception
+     * @throws \Exception|\GuzzleHttp\Exception\GuzzleException
      *                    "nickname":"nickname",
      *                    "email":"email",
      *                    "age":18,
@@ -85,11 +120,21 @@ trait ManageApi
         return $this->query(ApiEnum::GET_ROBOT);
     }
 
+    /**
+     * @return array
+     */
     public function getFriends()
     {
         return $this->getFriendList();
     }
 
+    /**
+     * @param $target
+     * @return array
+     * @throws \Blankqwq\Exceptions\MiraiHttpException
+     * @throws \Blankqwq\Mirai\Exceptions\MiraiException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function getFriendInfo($target)
     {
         $param = [

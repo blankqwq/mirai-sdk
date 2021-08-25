@@ -10,35 +10,44 @@
 - [ ] Mirai-http 接口对接
 - [ ] Mirai 消息类型
 - [ ] Mirai-http-adaptor
-    - http
-    - websocket
+    - [ ] http
+    - [ ] websocket
 
 
 > 快速开始
 
-mirai.php
+config/mirai.php
+
 ```php
 [
-    'default' => 'http',
-    'host' => 'localhost:8080',
-    'verify' => '',
-    'tty' => 7200,
+    'default' => 'http', // 使用的驱动
+    'host' => 'localhost:8080', // adaptor地址
+    'verify' => '', // 校验码
+    'tty' => 7200, // session过期事件
     'account' => [
-        'qq',
+        'qq号', // qq号，可以为多个
     ],
     'drivers' => [
-        'http' => Api::class,
+        'http' => Api::class, // 驱动列表
     ],
 ]
 
 ```
-
+当仅有一个qq时
 ```php
 Mirai::session()->sendNudge($sender['id'], $group['id']);
 ```
-
-> 非 Laravel 使用
+多个qq时
 ```php
-
-
+use Blankqwq\Mirai\Mirai;
+Mirai::session()->sendNudge($sender['id'], $group['id']);
 ```
+
+### 鸣谢
+
+[`mirai`](https://github.com/mamoe/mirai)
+[project-mirai/mirai-api-http](https://github.com/project-mirai/mirai-api-http)
+
+<!-- > 非 Laravel 使用 -->
+<!-- ```php -->
+<!-- ``` -->

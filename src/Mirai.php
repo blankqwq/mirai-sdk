@@ -11,6 +11,7 @@
 
 namespace Blankqwq\Mirai;
 
+use Blankqwq\Mirai\Contract\ApiContract;
 use Blankqwq\Mirai\Http\Api;
 
 class Mirai
@@ -28,17 +29,17 @@ class Mirai
     ];
 
     private $driver = null;
-    private $default = 'http';
+    private $default = null;
 
     public function __construct($config = [])
     {
         $this->config = array_merge($this->config, $config);
     }
 
-    public function session($qq = null)
+    public function session($qq = null): ApiContract
     {
         if (is_null($qq)) {
-            $qq = is_array($this->config['account']) ? $this->config['account'][0] : $this->config['account'];
+            $qq = $this->getDefaultQQ();
         }
         if (isset($this->driver[$qq])) {
             return $this->driver[$qq];
@@ -50,15 +51,21 @@ class Mirai
         return $this->driver[$qq] = $this->default($qq);
     }
 
-    private function make($name, $qq)
+    private function getDefaultQQ()
+    {
+        return is_array($this->config['account']) ? $this->config['account'][0] : $this->config['account'];
+    }
+
+    private function make($name, $qq): ApiContract
     {
         return new $name($qq, trim($this->config['host'], '/'), $this->config['verify'], $this->config['tty']);
     }
 
     /**
      * @param $qq
+     * @return Api
      */
-    private function default($qq): Api
+    private function default($qq): ApiContract
     {
         return $this->make(Api::class, $qq);
     }

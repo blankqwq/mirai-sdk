@@ -13,20 +13,19 @@ namespace Blankqwq\Mirai\Http;
 
 use Blankqwq\Exceptions\MiraiHttpException;
 use Blankqwq\Mirai\Contract\ApiContract;
+use Blankqwq\Mirai\Enums\MiraiErrorCode;
 use Blankqwq\Mirai\Exceptions\MiraiException;
 use Blankqwq\Mirai\Http\Traits\FileApi;
 use Blankqwq\Mirai\Http\Traits\GroupManageAPi;
 use Blankqwq\Mirai\Http\Traits\ManageApi;
 use Blankqwq\Mirai\Http\Traits\MessageApi;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Cache;
 
 class Api implements ApiContract
 {
-    use MessageApi;
-    use ManageApi;
-    use GroupManageAPi;
-    use FileApi;
+    use MessageApi, ManageApi, GroupManageAPi, FileApi;
 
     public const SESSION_KEY_PREFIX = 'mirai_http_';
 
@@ -37,6 +36,11 @@ class Api implements ApiContract
     private $verify;
     private $tty;
 
+    /**
+     * @throws GuzzleException
+     * @throws MiraiHttpException
+     * @throws MiraiException
+     */
     public function __construct($qq, $host, $verify = '', $tty = 7200)
     {
         $this->host = $host;
@@ -47,9 +51,20 @@ class Api implements ApiContract
         $this->sessionKey = $this->getSessionKey();
     }
 
+    /**
+     * @param false $clear
+     * @return mixed
+     * @throws GuzzleException
+     * @throws MiraiException
+     * @throws MiraiHttpException
+     */
     public function getSessionKey($clear = false)
     {
-        $key = self::SESSION_KEY_PREFIX.''.$this->qq;
+        if (empty($this->verify)) {
+            // 表示关闭了session
+            return null;
+        }
+        $key = self::SESSION_KEY_PREFIX . '' . $this->qq;
         if (!$clear) {
             $data = Cache::get($key);
             if ($data) {
@@ -77,7 +92,14 @@ class Api implements ApiContract
         return $sessionKey;
     }
 
-    public function verify($verify)
+    /**
+     * @param $verify
+     * @return array
+     * @throws GuzzleException
+     * @throws MiraiException
+     * @throws MiraiHttpException
+     */
+    public function verify($verify): array
     {
         $param = [
             'verifyKey' => $verify,
@@ -86,7 +108,15 @@ class Api implements ApiContract
         return $this->post(ApiEnum::VERIFY, $param);
     }
 
-    public function bind($qq, $sessionKey)
+    /**
+     * @param $qq
+     * @param $sessionKey
+     * @return array
+     * @throws GuzzleException
+     * @throws MiraiException
+     * @throws MiraiHttpException
+     */
+    public function bind($qq, $sessionKey): array
     {
         $param = [
             'qq' => $qq,
@@ -96,6 +126,14 @@ class Api implements ApiContract
         return $this->post(ApiEnum::BIND, $param);
     }
 
+    /**
+     * @param $qq
+     * @param $sessionKey
+     * @return array
+     * @throws GuzzleException
+     * @throws MiraiException
+     * @throws MiraiHttpException
+     */
     public function release($qq, $sessionKey)
     {
         $param = [
@@ -107,7 +145,9 @@ class Api implements ApiContract
     }
 
     /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array
+     * @throws GuzzleException
+     * @throws MiraiException
      * @throws MiraiHttpException
      */
     public function countMessage(): array
@@ -116,8 +156,8 @@ class Api implements ApiContract
     }
 
     /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws MiraiHttpException
+     * @throws GuzzleException
+     * @throws MiraiHttpException|MiraiException
      */
     public function about(): array
     {
@@ -126,10 +166,11 @@ class Api implements ApiContract
 
     /**
      * @param $api
-     *
-     * @throws MiraiHttpException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @param array $param
+     * @return array
+     * @throws GuzzleException
      * @throws MiraiException
+     * @throws MiraiHttpException
      */
     private function query($api, array $param = []): array
     {
@@ -137,15 +178,27 @@ class Api implements ApiContract
     }
 
     /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws MiraiHttpException
+     * @param $api
+     * @param array $param
+     * @return array
+     * @throws GuzzleException
      * @throws MiraiException
+     * @throws MiraiHttpException
      */
     private function post($api, array $param = []): array
     {
         return $this->request('POST', $api, $param);
     }
 
+    /**
+     * @param $method
+     * @param $api
+     * @param $param
+     * @return array
+     * @throws GuzzleException
+     * @throws MiraiException
+     * @throws MiraiHttpException
+     */
     private function request($method, $api, $param)
     {
         while (true) {
@@ -157,10 +210,10 @@ class Api implements ApiContract
             } else {
                 $body = ['json' => $param];
             }
-            $result = $this->client->request($method, $this->host.$api, $body);
-            \Log::info('request_data', [$this->host.$api, $method, $param, $result]);
+            $result = $this->client->request($method, $this->host . $api, $body);
+            \Log::info('request_data', [$this->host . $api, $method, $param, $result]);
             $res = json_decode($result->getBody()->getContents(), true);
-            if (3 === $res['code']) {
+            if (MiraiErrorCode::SESSION_EXPIRE_ERR === $res['code']) {
                 $this->sessionKey = $this->getSessionKey(true);
                 \Log::info('reGetSession', [$this->sessionKey]);
             } else {
