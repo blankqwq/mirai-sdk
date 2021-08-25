@@ -11,6 +11,15 @@
 
 namespace Blankqwq\Mirai\Message\MessageType;
 
-class At
+use Blankqwq\Mirai\Message\MessageType\Base;
+
+class At extends Base
 {
+    protected $type = 'At';
+
+    public function __construct($target)
+    {
+        $this->data['target']= $target;
+        parent::__construct();
+    }
 }

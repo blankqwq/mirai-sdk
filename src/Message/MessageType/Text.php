@@ -11,6 +11,15 @@
 
 namespace Blankqwq\Mirai\Message\MessageType;
 
-class Text
+use Blankqwq\Mirai\Message\MessageType\Base;
+
+class Text extends Base
 {
+    protected $type = 'Plain';
+
+    public function __construct($target)
+    {
+        $this->data['text'] = $target;
+        parent::__construct();
+    }
 }

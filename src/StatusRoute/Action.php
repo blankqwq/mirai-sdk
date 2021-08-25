@@ -9,8 +9,15 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Blankqwq\Mirai\Contract;
+namespace Blankqwq\Mirai\StatusRoute;
 
-interface FileApiContract
+abstract class Action
 {
+    public static function instruction()
+    {
+    }
+
+    public static function group(...$actions)
+    {
+    }
 }

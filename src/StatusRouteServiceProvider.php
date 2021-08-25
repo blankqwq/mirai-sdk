@@ -9,8 +9,17 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Blankqwq\Mirai\Action;
+namespace Blankqwq\Mirai;
 
-class Status
+class StatusRouteServiceProvider extends \Illuminate\Support\ServiceProvider
 {
+    protected $defer = true;
+
+    public function register()
+    {
+    }
+
+    public function provides()
+    {
+    }
 }

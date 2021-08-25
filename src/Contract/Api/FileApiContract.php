@@ -9,15 +9,8 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Blankqwq\Mirai\Action;
+namespace Blankqwq\Mirai\Contract\Api;
 
-abstract class Action
+interface FileApiContract
 {
-    public static function instruction()
-    {
-    }
-
-    public static function group(...$actions)
-    {
-    }
 }

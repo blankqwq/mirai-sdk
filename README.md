@@ -35,12 +35,22 @@ config/mirai.php
 ```
 当仅有一个qq时
 ```php
+use Blankqwq\Mirai\Mirai;
+..
+
+
 Mirai::session()->sendNudge($sender['id'], $group['id']);
+
+..
 ```
-多个qq时
+指定qq
 ```php
 use Blankqwq\Mirai\Mirai;
-Mirai::session()->sendNudge($sender['id'], $group['id']);
+
+..
+Mirai::session($qq)->sendNudge($sender['id'], $group['id']);
+
+..
 ```
 
 ### 鸣谢

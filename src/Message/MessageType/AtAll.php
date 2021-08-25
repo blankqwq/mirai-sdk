@@ -11,6 +11,9 @@
 
 namespace Blankqwq\Mirai\Message\MessageType;
 
-class AtAll
+use Blankqwq\Mirai\Message\MessageType\Base;
+
+class AtAll extends Base
 {
+    protected $type='AtAll';
 }

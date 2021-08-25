@@ -11,6 +11,15 @@
 
 namespace Blankqwq\Mirai\Message\MessageType;
 
-class MiraiCode
+use Blankqwq\Mirai\Message\MessageType\Base;
+
+class MiraiCode extends Base
 {
+    protected $type = 'MiraiCode';
+
+    public function __construct($code)
+    {
+        $this->data['code'] = $code;
+        parent::__construct();
+    }
 }

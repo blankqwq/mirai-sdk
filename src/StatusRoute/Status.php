@@ -9,15 +9,8 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Blankqwq\Mirai\Action;
+namespace Blankqwq\Mirai\StatusRoute;
 
-class StatusRouter
+class Status
 {
-    public function __construct()
-    {
-    }
-
-    public function actions()
-    {
-    }
 }

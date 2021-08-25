@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Blankqwq\Mirai\Contract;
+namespace Blankqwq\Mirai\Contract\Api;
 
 interface MessageApiContract
 {

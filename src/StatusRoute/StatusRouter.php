@@ -9,17 +9,19 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Blankqwq\Mirai;
+namespace Blankqwq\Mirai\StatusRoute;
 
-class ActionServiceProvider extends \Illuminate\Support\ServiceProvider
+class StatusRouter
 {
-    protected $defer = true;
+    private $currentStatus = null;
 
-    public function register()
+    public function __construct()
     {
     }
 
-    public function provides()
+    public function router()
     {
+        // 寻找符合的状态队列
+
     }
 }

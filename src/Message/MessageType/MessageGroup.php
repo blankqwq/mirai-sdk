@@ -11,6 +11,46 @@
 
 namespace Blankqwq\Mirai\Message\MessageType;
 
-class MessageGroup
+use Blankqwq\Mirai\Contract\MessageTypeContract;
+
+class MessageGroup implements MessageTypeContract, \ArrayAccess
 {
+    protected $data = [];
+
+    public function __construct(...$data)
+    {
+        $this->data = $data;
+    }
+
+    public function add(MessageTypeContract $message)
+    {
+        $this->data[] = $message;
+    }
+
+    public function getData(): array
+    {
+        return array_map(function ($item) {
+            return $item->getData();
+        }, $this->data);
+    }
+
+    public function offsetExists($offset): bool
+    {
+        return isset($this->data[$offset]);
+    }
+
+    public function offsetGet($offset)
+    {
+        return $this->data[$offset];
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        return $this->data[$offset] = $value;
+    }
+
+    public function offsetUnset($offset)
+    {
+        unset($this->data[$offset]);
+    }
 }

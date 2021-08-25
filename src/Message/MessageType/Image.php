@@ -11,6 +11,9 @@
 
 namespace Blankqwq\Mirai\Message\MessageType;
 
-class Image
+use Blankqwq\Message\MessageType\File;
+
+class Image extends File
 {
+    protected $type = 'Image';
 }

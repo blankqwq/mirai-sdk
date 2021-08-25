@@ -11,6 +11,15 @@
 
 namespace Blankqwq\Mirai\Message\MessageType;
 
-class Face
+use Blankqwq\Mirai\Message\MessageType\Base;
+
+class Face extends Base
 {
+    protected $type = 'Face';
+
+    public function __construct($name)
+    {
+        $this->data['name'] = $name;
+        parent::__construct();
+    }
 }
