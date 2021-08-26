@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class MemberSpecialTitleChangeEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class MemberSpecialTitleChangeEvent extends Event
 {
     public $member;
     public $origin;

@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class FriendNickChangedEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class FriendNickChangedEvent extends Event
 {
     public $from;
     public $to;

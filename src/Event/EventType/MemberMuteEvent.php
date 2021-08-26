@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class MemberMuteEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class MemberMuteEvent extends Event
 {
     public $durationSeconds;
     public $member;

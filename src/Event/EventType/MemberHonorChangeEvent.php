@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class MemberHonorChangeEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class MemberHonorChangeEvent extends Event
 {
     public $member;
     public $group;

@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class GroupAllowAnonymousChatEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class GroupAllowAnonymousChatEvent extends Event
 {
     public $origin;
     public $current;

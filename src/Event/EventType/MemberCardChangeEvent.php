@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class MemberCardChangeEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class MemberCardChangeEvent extends Event
 {
     public $member;
     public $origin;

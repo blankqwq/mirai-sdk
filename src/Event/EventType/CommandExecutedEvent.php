@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class CommandExecutedEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class CommandExecutedEvent extends Event
 {
     public $name;
     public $friend;

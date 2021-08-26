@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class GroupEntranceAnnouncementChangeEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class GroupEntranceAnnouncementChangeEvent extends Event
 {
     public $origin;
     public $current;

@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class BotLeaveEventKick
+ use Blankqwq\Mirai\Event\Event;
+
+class BotLeaveEventKick extends Event
 {
     public $group;
 }

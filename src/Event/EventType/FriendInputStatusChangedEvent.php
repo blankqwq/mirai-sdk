@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class FriendInputStatusChangedEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class FriendInputStatusChangedEvent extends Event
 {
     public $inputting;
     public $friend = [];

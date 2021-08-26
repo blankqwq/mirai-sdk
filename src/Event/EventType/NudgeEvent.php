@@ -11,7 +11,10 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class NudgeEvent
+
+use Blankqwq\Mirai\Event\Event;
+
+class NudgeEvent extends Event
 {
     public $fromId;
     public $subject;

@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class GroupMuteAllEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class GroupMuteAllEvent extends Event
 {
     public $origin;
     public $current;

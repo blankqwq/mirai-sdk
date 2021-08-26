@@ -11,7 +11,10 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class BotGroupPermissionChangeEvent
+
+use Blankqwq\Mirai\Event\Event;
+
+class BotGroupPermissionChangeEvent extends Event
 {
     public $origin;
     public $current;

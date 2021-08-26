@@ -11,7 +11,7 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-use Blankqwq\Mirai\Event\Event;
+ use Blankqwq\Mirai\Event\Event;
 
 class GroupNameChangeEvent extends Event
 {

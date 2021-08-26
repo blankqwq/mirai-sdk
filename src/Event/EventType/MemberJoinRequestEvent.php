@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class MemberJoinRequestEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class MemberJoinRequestEvent extends Event
 {
     public $eventId;
     public $fromId;

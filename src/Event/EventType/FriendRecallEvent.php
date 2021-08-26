@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class FriendRecallEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class FriendRecallEvent extends Event
 {
     public $authorId;
     public $messageId;

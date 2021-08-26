@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class BotJoinGroupEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class BotJoinGroupEvent extends Event
 {
     public $group;
 }

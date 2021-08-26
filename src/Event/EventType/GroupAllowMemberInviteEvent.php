@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class GroupAllowMemberInviteEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class GroupAllowMemberInviteEvent extends Event
 {
     public $origin;
     public $current;

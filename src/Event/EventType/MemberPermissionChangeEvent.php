@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class MemberPermissionChangeEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class MemberPermissionChangeEvent extends Event
 {
     public $member;
     public $origin;

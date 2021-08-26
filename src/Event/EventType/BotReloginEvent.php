@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class BotReloginEvent
+use Blankqwq\Mirai\Event\Event;
+
+class BotReloginEvent extends Event
 {
     public $qq;
 }

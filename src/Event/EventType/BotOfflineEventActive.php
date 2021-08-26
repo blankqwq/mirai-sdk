@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class BotOfflineEventActive
+use Blankqwq\Mirai\Event\Event;
+
+class BotOfflineEventActive extends Event
 {
     public $qq;
 }

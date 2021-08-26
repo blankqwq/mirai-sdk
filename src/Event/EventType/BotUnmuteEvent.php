@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class BotUnmuteEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class BotUnmuteEvent extends Event
 {
     public $operator;
     public $group;

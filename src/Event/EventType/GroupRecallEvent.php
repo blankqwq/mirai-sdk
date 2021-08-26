@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class GroupRecallEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class GroupRecallEvent extends Event
 {
     public $authorId;
     public $messageId;

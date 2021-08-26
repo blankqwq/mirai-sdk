@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class MemberUnmuteEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class MemberUnmuteEvent extends Event
 {
     public $member;
     public $operator;

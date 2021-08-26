@@ -11,7 +11,9 @@
 
 namespace Blankqwq\Mirai\Event\EventType;
 
-class GroupAllowConfessTalkEvent
+ use Blankqwq\Mirai\Event\Event;
+
+class GroupAllowConfessTalkEvent extends Event
 {
     public $origin;
     public $current;
