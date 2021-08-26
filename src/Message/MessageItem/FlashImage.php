@@ -13,5 +13,5 @@ namespace Blankqwq\Mirai\Message\MessageItem;
 
 class FlashImage extends Image
 {
-    protected $type='FlashImage';
+    protected $type = 'FlashImage';
 }

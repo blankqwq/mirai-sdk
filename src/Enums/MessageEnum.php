@@ -14,8 +14,8 @@ namespace Blankqwq\Mirai\Enums;
 class MessageEnum
 {
     public const MESSAGE_TYPE = [
-        'FriendMessage','GroupMessage',
-        'TempMessage','StrangerMessage',
+        'FriendMessage', 'GroupMessage',
+        'TempMessage', 'StrangerMessage',
         'OtherClientMessage',
 
         'BotGroupPermissionChangeEvent',
@@ -45,15 +45,14 @@ class MessageEnum
         'NewFriendRequestEvent',
         'MemberJoinRequestEvent',
         'BotInvitedJoinGroupRequestEvent',
-        'CommandExecutedEvent'
+        'CommandExecutedEvent',
     ];
 
     public const EVENT_TYPE = [
-
     ];
 
     public const ROBOT_EVENT = [
-        '','','BotOfflineEventForce','BotOfflineEventDropped',
-        'BotReloginEvent','FriendInputStatusChangedEvent','FriendNickChangedEvent'
+        '', '', 'BotOfflineEventForce', 'BotOfflineEventDropped',
+        'BotReloginEvent', 'FriendInputStatusChangedEvent', 'FriendNickChangedEvent',
     ];
 }

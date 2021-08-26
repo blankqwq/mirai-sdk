@@ -69,7 +69,7 @@ class Http implements MiraiApiContract
             // 表示关闭了session
             return null;
         }
-        $key = self::SESSION_KEY_PREFIX . '' . $this->qq;
+        $key = self::SESSION_KEY_PREFIX.''.$this->qq;
         if (!$clear) {
             $data = Cache::get($key);
             if ($data) {
@@ -100,7 +100,6 @@ class Http implements MiraiApiContract
     /**
      * @param $verify
      *
-     * @return array
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -118,7 +117,6 @@ class Http implements MiraiApiContract
      * @param $qq
      * @param $sessionKey
      *
-     * @return array
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -174,8 +172,7 @@ class Http implements MiraiApiContract
 
     /**
      * @param $api
-     * @param array $param
-     * @return array
+     *
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -187,8 +184,7 @@ class Http implements MiraiApiContract
 
     /**
      * @param $api
-     * @param array $param
-     * @return array
+     *
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -220,8 +216,8 @@ class Http implements MiraiApiContract
             } else {
                 $body = ['json' => $param];
             }
-            $result = $this->client->request($method, $this->host . $api, $body);
-            \Log::info('request_data', [$this->host . $api, $method, $param, $result]);
+            $result = $this->client->request($method, $this->host.$api, $body);
+            \Log::info('request_data', [$this->host.$api, $method, $param, $result]);
             $res = json_decode($result->getBody()->getContents(), true);
             if (MiraiErrorCode::SESSION_EXPIRE_ERR === $res['code']) {
                 $this->sessionKey = $this->getSessionKey(true);

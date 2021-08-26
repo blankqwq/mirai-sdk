@@ -11,7 +11,6 @@
 
 namespace Blankqwq\Mirai\Message\MessageItem;
 
-
 class Voice extends File
 {
     protected $type = 'Voice';

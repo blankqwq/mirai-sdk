@@ -16,6 +16,7 @@ class MQ
     /**
      * @param $type
      * @param null $value
+     *
      * @return string
      */
     public static function MQ($type, $value = null)

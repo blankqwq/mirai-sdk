@@ -13,14 +13,11 @@ namespace Blankqwq\Mirai\Drivers\Http\Traits;
 
 trait FileApi
 {
-
     public function upload()
     {
-
     }
 
     public function unlink()
     {
-
     }
 }
