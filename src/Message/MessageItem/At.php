@@ -11,15 +11,13 @@
 
 namespace Blankqwq\Mirai\Message\MessageItem;
 
-use Blankqwq\Mirai\Message\MessageItem\Base;
-
 class At extends Base
 {
     protected $type = 'At';
 
     public function __construct($target)
     {
-        $this->data['target']= $target;
+        $this->data['target'] = $target;
         parent::__construct();
     }
 }

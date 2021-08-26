@@ -11,8 +11,6 @@
 
 namespace Blankqwq\Mirai\Message\MessageItem;
 
-use Blankqwq\Mirai\Message\MessageItem\Base;
-
 class MiraiCode extends Base
 {
     protected $type = 'MiraiCode';

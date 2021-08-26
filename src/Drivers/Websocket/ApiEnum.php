@@ -13,5 +13,4 @@ namespace Blankqwq\Mirai\Drivers\Websocket;
 
 class ApiEnum
 {
-
 }

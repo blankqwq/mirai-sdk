@@ -12,8 +12,6 @@
 namespace Blankqwq\Mirai;
 
 use Blankqwq\Mirai\Contract\ApiContract;
-use Blankqwq\Mirai\Contract\MiraiApiContract;
-use Blankqwq\Mirai\Drivers\CQHttp\CQHttp;
 use Blankqwq\Mirai\Drivers\Http\Http;
 
 class Mirai
@@ -24,7 +22,7 @@ class Mirai
         'verify' => '',
         'tty' => 7200,
         'account' => [
-            ''
+            '',
         ],
         'drivers' => [
             'http' => Http::class,
