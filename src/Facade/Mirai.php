@@ -11,14 +11,14 @@
 
 namespace Blankqwq\Mirai\Facade;
 
-use Blankqwq\Mirai\Contract\ApiContract;
+use Blankqwq\Mirai\Contract\MiraiApiContract;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static ApiContract session($qq = null)
+ * @method static MiraiApiContract session($qq = null)
  *
  * @see \Blankqwq\Mirai\Mirai
- * @see ApiContract
+ * @see MiraiApiContract
  */
 class Mirai extends Facade
 {

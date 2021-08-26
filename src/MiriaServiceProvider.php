@@ -11,6 +11,8 @@
 
 namespace Blankqwq\Mirai;
 
+use Illuminate\Support\Str;
+
 class MiriaServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     protected $defer = true;
@@ -20,7 +22,6 @@ class MiriaServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app->singleton(Mirai::class, function () {
             return new Mirai(config('mirai'));
         });
-
         $this->app->alias(Mirai::class, 'mirai');
     }
 

@@ -31,6 +31,6 @@ class MiraiException extends \Exception
 
     public function __construct($code = 0, Throwable $previous = null)
     {
-        parent::__construct($this->messageCode[$code] ?? '未知错误', $code, $previous);
+        parent::__construct($this->messageCode[$code] ?? 'Mirai 未知错误', $code, $previous);
     }
 }

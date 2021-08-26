@@ -2,16 +2,17 @@
 
 [![StyleCI](https://github.styleci.io/repos/399045334/shield?branch=main)](https://github.styleci.io/repos/399045334?branch=main)
 
-> 用于在laravel 开发miria 机器人后端
+> 用于在`laravel`开发[`mirai`](https://github.com/mamoe/mirai) 机器人后端
 
 开发中
 
 - [ ] 状态事件路由
-- [ ] Mirai-http 接口对接
+    - [ ] 单独一个插件
 - [ ] Mirai 消息类型
 - [ ] Mirai-http-adaptor
-    - [ ] http
+    - [x] http
     - [ ] websocket
+
 
 
 > 快速开始
@@ -28,16 +29,16 @@ config/mirai.php
         'qq号', // qq号，可以为多个
     ],
     'drivers' => [
-        'http' => Api::class, // 驱动列表
+        'http' => Http::class, // 驱动列表
     ],
 ]
-
 ```
+
+
 当仅有一个qq时
 ```php
 use Blankqwq\Mirai\Mirai;
 ..
-
 
 Mirai::session()->sendNudge($sender['id'], $group['id']);
 
@@ -55,9 +56,7 @@ Mirai::session($qq)->sendNudge($sender['id'], $group['id']);
 
 ### 鸣谢
 
-[`mirai`](https://github.com/mamoe/mirai)
-[project-mirai/mirai-api-http](https://github.com/project-mirai/mirai-api-http)
-
-<!-- > 非 Laravel 使用 -->
-<!-- ```php -->
-<!-- ``` -->
+[`mirai`](https://github.com/mamoe/mirai) <br>
+[`project-mirai/mirai-api-http`](https://github.com/project-mirai/mirai-api-http)<br>
+[`MiraiGo`](https://github.com/Mrs4s/MiraiGo)<br>
+[`Mrs4s/go-cqhttp`](https://github.com/Mrs4s/go-cqhttp)<br>
