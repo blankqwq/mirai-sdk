@@ -11,11 +11,15 @@
 
 namespace Blankqwq\Mirai;
 
+use Blankqwq\Mirai\Enums\MessageEnum;
 use Blankqwq\Mirai\Event\Event;
 use Blankqwq\Mirai\Message\Message;
 
 class Translate
 {
+
+    public const EVENT_NAME_SPACE = 'Blankqwq\Mirai\Event\EventType\\';
+
     /**
      * @param $request
      *
@@ -23,8 +27,55 @@ class Translate
      *
      * @throws \Exception
      */
-    public static function request($request)
+    public static function get($request)
     {
-        // 解析Request
+        $type = $request['type'];
+        if (in_array($type, MessageEnum::MESSAGE_TYPE)) {
+            return self::makeMessage($request, $type);
+        }
+        return self::makeEvent($request, $type);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    private static function makeEvent($data, $type)
+    {
+        $className = sprintf(self::EVENT_NAME_SPACE . '%s', $type);
+        if (class_exists($className)) {
+            // 依赖注入
+            return self::make($className, $data);
+        }
+        throw new \Exception('Cant find the event [' . $type . ']!');
+    }
+
+
+    private static function make($name, $data)
+    {
+        try {
+            $res = new $name;
+            $reflect = new \ReflectionClass($name);
+            $properties = $reflect->getProperties();
+            foreach ($properties as $property) {
+                $name = $property->getName();
+                if (isset($data[$name])) {
+                    $res->$name = $data[$name];
+                } elseif ($name == 'group') {
+                    foreach (['operator', 'member'] as $item) {
+                        if (isset($data[$item])) {
+                            $res->$name = $data[$item];
+                        }
+                    }
+                }
+            }
+            return $res;
+        } catch (\Exception $exception) {
+            throw new \Exception($exception->getMessage());
+        }
+    }
+
+    private static function makeMessage($data, $type): Message
+    {
+        return new Message($data);
     }
 }

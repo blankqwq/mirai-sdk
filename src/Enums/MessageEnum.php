@@ -17,42 +17,5 @@ class MessageEnum
         'FriendMessage', 'GroupMessage',
         'TempMessage', 'StrangerMessage',
         'OtherClientMessage',
-
-        'BotGroupPermissionChangeEvent',
-        'BotMuteEvent',
-        'BotUnmuteEvent',
-        'BotJoinGroupEvent',
-        'BotLeaveEventActive',
-        'BotLeaveEventKick',
-        'GroupRecallEvent',
-        'FriendRecallEvent',
-        'NudgeEvent',
-        'GroupNameChangeEvent',
-        'GroupEntranceAnnouncementChangeEvent',
-        'GroupMuteAllEvent',
-        'GroupAllowAnonymousChatEvent',
-        'GroupAllowConfessTalkEvent',
-        'GroupAllowMemberInviteEvent',
-        'MemberJoinEvent',
-        'MemberLeaveEventKick',
-        'MemberLeaveEventQuit',
-        'MemberCardChangeEvent',
-        'MemberSpecialTitleChangeEvent',
-        'MemberPermissionChangeEvent',
-        'MemberMuteEvent',
-        'MemberUnmuteEvent',
-        'MemberHonorChangeEvent',
-        'NewFriendRequestEvent',
-        'MemberJoinRequestEvent',
-        'BotInvitedJoinGroupRequestEvent',
-        'CommandExecutedEvent',
-    ];
-
-    public const EVENT_TYPE = [
-    ];
-
-    public const ROBOT_EVENT = [
-        '', '', 'BotOfflineEventForce', 'BotOfflineEventDropped',
-        'BotReloginEvent', 'FriendInputStatusChangedEvent', 'FriendNickChangedEvent',
     ];
 }
