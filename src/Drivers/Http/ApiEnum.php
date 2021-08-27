@@ -53,6 +53,7 @@ class ApiEnum
     public const GROUP_CONFIG = '/groupConfig';
     public const MEMBER_INFO = '/memberInfo';
 
+    // 事件处理
     public const ADD_FRIEND_REQUEST = '/resp/newFriendRequestEvent';
     public const ADD_GROUP_MEMBER_REQUEST = '/resp/memberJoinRequestEvent';
     public const INVITE_ROBOT_REQUEST = '/resp/botInvitedJoinGroupRequestEvent';
@@ -65,7 +66,7 @@ class ApiEnum
     public const MOVE_FILE = '/file/move';
     public const RENAME_FILE = '/file/rename';
 
-    public const UPLOAD_FILE = '/uploadImage';
+    public const UPLOAD_IMAGE = '/uploadImage';
     public const UPLOAD_VOICE = '/uploadVoice';
-    public const UPLOAD_FILE_TO_GROUP = '/file/upload';
+    public const UPLOAD_FILE = '/file/upload';
 }

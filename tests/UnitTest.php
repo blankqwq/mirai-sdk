@@ -43,4 +43,9 @@ class UnitTest extends \PHPUnit\Framework\TestCase
         // 然后调用 `getWeather` 方法，并断言返回值为模拟的返回值。
         $this->assertSame(['success' => true], $w->http->verify('深圳'));
     }
+
+
+    public function testTranslate(){
+        $trans =\Blankqwq\Mirai\Translate::get([]);
+    }
 }

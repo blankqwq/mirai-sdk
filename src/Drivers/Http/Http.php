@@ -13,12 +13,13 @@ namespace Blankqwq\Mirai\Drivers\Http;
 
 use Blankqwq\Exceptions\MiraiHttpException;
 use Blankqwq\Mirai\Contract\MiraiApiContract;
+use Blankqwq\Mirai\Drivers\Http\Traits\FileApi;
+use Blankqwq\Mirai\Drivers\Http\Traits\GroupManageAPi;
+use Blankqwq\Mirai\Drivers\Http\Traits\ManageApi;
+use Blankqwq\Mirai\Drivers\Http\Traits\MessageApi;
 use Blankqwq\Mirai\Enums\MiraiErrorCode;
 use Blankqwq\Mirai\Exceptions\MiraiException;
-use Blankqwq\Mirai\Http\Traits\FileApi;
-use Blankqwq\Mirai\Http\Traits\GroupManageAPi;
-use Blankqwq\Mirai\Http\Traits\ManageApi;
-use Blankqwq\Mirai\Http\Traits\MessageApi;
+
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Cache;
@@ -172,7 +173,8 @@ class Http implements MiraiApiContract
 
     /**
      * @param $api
-     *
+     * @param array $param
+     * @return array
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -184,7 +186,8 @@ class Http implements MiraiApiContract
 
     /**
      * @param $api
-     *
+     * @param array $param
+     * @return array
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -205,7 +208,7 @@ class Http implements MiraiApiContract
      * @throws MiraiException
      * @throws MiraiHttpException
      */
-    private function request($method, $api, $param)
+    private function request($method, $api, $param): array
     {
         while (true) {
             if (!empty($this->sessionKey)) {

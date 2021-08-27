@@ -11,13 +11,128 @@
 
 namespace Blankqwq\Mirai\Drivers\Http\Traits;
 
+use Blankqwq\Mirai\Drivers\Http\ApiEnum;
+
 trait FileApi
 {
-    public function upload()
+    public function uploadImage($type, $image): array
     {
+        $param = [
+            'type' => $type,
+            'img' => $image
+        ];
+        return $this->post(ApiEnum::UPLOAD_IMAGE, $param);
     }
 
-    public function unlink()
+    public function uploadVoice($type, $voice): array
     {
+        $param = [
+            'type' => $type,
+            'voice' => $voice
+        ];
+        return $this->post(ApiEnum::UPLOAD_VOICE, $param);
     }
+
+    public function upload($type, $path, $file): array
+    {
+        $param = [
+            'type' => $type,
+            'path' => $path,
+            'file' => $file
+        ];
+        return $this->post(ApiEnum::UPLOAD_FILE, $param);
+    }
+
+    public function unlink($id, $target, $type)
+    {
+        $param = [
+                'id' => $id,
+            ] + $this->makeTargetParam($target, $type);
+        return $this->post(ApiEnum::DELETE_FILE, $param);
+    }
+
+    public function rename($id, $target, $type, $renameTo)
+    {
+        $param = [
+                'id' => $id,
+                'renameTo' => $renameTo,
+            ] + $this->makeTargetParam($target, $type);
+        return $this->post(ApiEnum::RENAME_FILE, $param);
+    }
+
+    public function move($id, $target, $type, $moveTo)
+    {
+        $param = [
+                'id' => $id,
+                'moveTo' => $moveTo
+            ] + $this->makeTargetParam($target, $type);
+        return $this->post(ApiEnum::MOVE_FILE, $param);
+    }
+
+    public function mkdir($id, $target, $type, $directoryName)
+    {
+        $param = [
+                'id' => $id,
+                'directoryName' => $directoryName
+            ] + $this->makeTargetParam($target, $type);
+        return $this->post(ApiEnum::MAKE_DIR, $param);
+    }
+
+    /**
+     * @param $target
+     * @param $type
+     * @param int $offset
+     * @param int $size
+     * @param bool $withDownloadInfo
+     * @return array
+     * @throws \Blankqwq\Exceptions\MiraiHttpException
+     * @throws \Blankqwq\Mirai\Exceptions\MiraiException
+     * @throws \GuzzleHttp\Exception\GuzzleException {
+     * "name":"setu.png",
+     * "id":"/12314d-1wf13-a98ffa",
+     * "path":"/setu.png",
+     * "parent":null,
+     * "contact":{
+     * "id":123123,
+     * "name":"setu qun",
+     * "permission":"OWNER"
+     * },
+     * "isFile":true,
+     * "isDictionary":false,
+     * "isDirectory":false,
+     * "downloadInfo":{
+     * "sha1":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     * "md5":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     * "url":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     * }
+     * }
+     */
+    public function list($target, $type, int $offset = 0, int $size = 15, bool $withDownloadInfo = true): array
+    {
+        $param = [
+                'withDownloadInfo' => $withDownloadInfo,
+                'offset' => $offset,
+                'size' => $size
+            ] + $this->makeTargetParam($target, $type);
+        return $this->query(ApiEnum::GET_FILE_LIST, $param);
+    }
+
+    public function info($id, $target, $type, $withDownloadInfo = true)
+    {
+        $param = [
+                'id' => $id,
+                'withDownloadInfo' => $withDownloadInfo,
+            ] + $this->makeTargetParam($target, $type);
+        return $this->query(ApiEnum::GET_FILE_INFO, $param);
+    }
+
+
+    private function makeTargetParam($target, $type = 'group'): array
+    {
+        return [
+            $type => $target
+        ];
+    }
+
+
 }

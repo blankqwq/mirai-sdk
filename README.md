@@ -1,4 +1,4 @@
-### Laravel mirai sdk
+# Laravel mirai sdk
 
 [![StyleCI](https://github.styleci.io/repos/399045334/shield?branch=main)](https://github.styleci.io/repos/399045334?branch=main)
 
@@ -6,13 +6,14 @@
 
 开发中
 
-- [ ] 状态事件路由
-    - [ ] 单独一个插件
-- [ ] Mirai 消息类型
+
+- [x] Mirai 消息类型
+- [x] Mirai 事件类型
 - [ ] Mirai-http-adaptor
     - [x] http
     - [ ] websocket
-
+- [ ] 状态事件路由
+    - [ ] 单独一个插件
 
 
 > 快速开始
@@ -24,7 +25,7 @@ config/mirai.php
     'default' => 'http', // 使用的驱动
     'host' => 'localhost:8080', // adaptor地址
     'verify' => '', // 校验码
-    'tty' => 7200, // session过期事件
+    'tty' => 7200, // session过期时间
     'account' => [
         'qq号', // qq号，可以为多个
     ],
@@ -35,7 +36,7 @@ config/mirai.php
 ```
 
 
-当仅有一个qq时
+使用默认qq进行拍一拍
 ```php
 use Blankqwq\Mirai\Mirai;
 ..
@@ -44,14 +45,30 @@ Mirai::session()->sendNudge($sender['id'], $group['id']);
 
 ..
 ```
-指定qq
+指定某qq进行拍一拍
 ```php
 use Blankqwq\Mirai\Mirai;
 
 ..
+
+$qq='1234567890';
 Mirai::session($qq)->sendNudge($sender['id'], $group['id']);
 
 ..
+
+```
+
+若为拍一拍目标为机器人时，机器人也进行拍一拍
+
+```php
+$eventOrMessage = \Blankqwq\Mirai\Translate::get($request);
+if ($event instanceof NudgeEvent) {
+    Log::info('success_event', [$currentQQ,$event]);
+   if ($event->target==$currentQQ){
+        Mirai::session()->sendNudge($event->fromId,$event->subject['id'],$event->subject['kind']);
+   }
+}
+
 ```
 
 ### 鸣谢

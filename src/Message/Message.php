@@ -13,15 +13,16 @@ namespace Blankqwq\Mirai\Message;
 
 class Message
 {
-    private $group = [];
-    private $sender = [];
-    private $messageText = '';
-    private $at = [];
-    private $image = [];
-    private $voice = [];
-    private $nudge = [];
+    public $group = [];
+    public $sender = [];
+    public $messageText = '';
+    public $at = [];
+    public $image = [];
+    public $voice = [];
+    public $origin = [];
 
     public function __construct($data)
     {
+        $this->origin = $data;
     }
 }

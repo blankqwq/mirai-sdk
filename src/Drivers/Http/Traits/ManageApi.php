@@ -37,7 +37,7 @@ trait ManageApi
      * @param $eventId
      * @param $fromId
      * @param $groupId
-     * @param int    $operate
+     * @param int $operate
      * @param string $message
      *
      * @return array
@@ -63,7 +63,7 @@ trait ManageApi
      * @param $eventId
      * @param $fromId
      * @param $groupId
-     * @param int    $operate
+     * @param int $operate
      * @param string $message
      *
      * @return array
