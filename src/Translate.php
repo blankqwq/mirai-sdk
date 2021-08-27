@@ -17,7 +17,6 @@ use Blankqwq\Mirai\Message\Message;
 
 class Translate
 {
-
     public const EVENT_NAME_SPACE = 'Blankqwq\Mirai\Event\EventType\\';
 
     /**
@@ -33,6 +32,7 @@ class Translate
         if (in_array($type, MessageEnum::MESSAGE_TYPE)) {
             return self::makeMessage($request, $type);
         }
+
         return self::makeEvent($request, $type);
     }
 
@@ -41,26 +41,25 @@ class Translate
      */
     private static function makeEvent($data, $type)
     {
-        $className = sprintf(self::EVENT_NAME_SPACE . '%s', $type);
+        $className = sprintf(self::EVENT_NAME_SPACE.'%s', $type);
         if (class_exists($className)) {
             // 依赖注入
             return self::make($className, $data);
         }
-        throw new \Exception('Cant find the event [' . $type . ']!');
+        throw new \Exception('Cant find the event ['.$type.']!');
     }
-
 
     private static function make($name, $data)
     {
         try {
-            $res = new $name;
+            $res = new $name();
             $reflect = new \ReflectionClass($name);
             $properties = $reflect->getProperties();
             foreach ($properties as $property) {
                 $name = $property->getName();
                 if (isset($data[$name])) {
                     $res->$name = $data[$name];
-                } elseif ($name == 'group') {
+                } elseif ('group' == $name) {
                     foreach (['operator', 'member'] as $item) {
                         if (isset($data[$item])) {
                             $res->$name = $data[$item];
@@ -68,6 +67,7 @@ class Translate
                     }
                 }
             }
+
             return $res;
         } catch (\Exception $exception) {
             throw new \Exception($exception->getMessage());

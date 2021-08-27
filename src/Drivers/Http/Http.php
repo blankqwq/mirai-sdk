@@ -19,7 +19,6 @@ use Blankqwq\Mirai\Drivers\Http\Traits\ManageApi;
 use Blankqwq\Mirai\Drivers\Http\Traits\MessageApi;
 use Blankqwq\Mirai\Enums\MiraiErrorCode;
 use Blankqwq\Mirai\Exceptions\MiraiException;
-
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Cache;
@@ -173,8 +172,7 @@ class Http implements MiraiApiContract
 
     /**
      * @param $api
-     * @param array $param
-     * @return array
+     *
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -186,8 +184,7 @@ class Http implements MiraiApiContract
 
     /**
      * @param $api
-     * @param array $param
-     * @return array
+     *
      * @throws GuzzleException
      * @throws MiraiException
      * @throws MiraiHttpException
@@ -201,8 +198,6 @@ class Http implements MiraiApiContract
      * @param $method
      * @param $api
      * @param $param
-     *
-     * @return array
      *
      * @throws GuzzleException
      * @throws MiraiException
