@@ -44,8 +44,8 @@ class UnitTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(['success' => true], $w->http->verify('深圳'));
     }
 
-
-    public function testTranslate(){
-        $trans =\Blankqwq\Mirai\Translate::get([]);
+    public function testTranslate()
+    {
+        $trans = \Blankqwq\Mirai\Translate::get([]);
     }
 }

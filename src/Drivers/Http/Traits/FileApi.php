@@ -19,8 +19,9 @@ trait FileApi
     {
         $param = [
             'type' => $type,
-            'img' => $image
+            'img' => $image,
         ];
+
         return $this->post(ApiEnum::UPLOAD_IMAGE, $param);
     }
 
@@ -28,8 +29,9 @@ trait FileApi
     {
         $param = [
             'type' => $type,
-            'voice' => $voice
+            'voice' => $voice,
         ];
+
         return $this->post(ApiEnum::UPLOAD_VOICE, $param);
     }
 
@@ -38,8 +40,9 @@ trait FileApi
         $param = [
             'type' => $type,
             'path' => $path,
-            'file' => $file
+            'file' => $file,
         ];
+
         return $this->post(ApiEnum::UPLOAD_FILE, $param);
     }
 
@@ -48,6 +51,7 @@ trait FileApi
         $param = [
                 'id' => $id,
             ] + $this->makeTargetParam($target, $type);
+
         return $this->post(ApiEnum::DELETE_FILE, $param);
     }
 
@@ -57,6 +61,7 @@ trait FileApi
                 'id' => $id,
                 'renameTo' => $renameTo,
             ] + $this->makeTargetParam($target, $type);
+
         return $this->post(ApiEnum::RENAME_FILE, $param);
     }
 
@@ -64,8 +69,9 @@ trait FileApi
     {
         $param = [
                 'id' => $id,
-                'moveTo' => $moveTo
+                'moveTo' => $moveTo,
             ] + $this->makeTargetParam($target, $type);
+
         return $this->post(ApiEnum::MOVE_FILE, $param);
     }
 
@@ -73,47 +79,46 @@ trait FileApi
     {
         $param = [
                 'id' => $id,
-                'directoryName' => $directoryName
+                'directoryName' => $directoryName,
             ] + $this->makeTargetParam($target, $type);
+
         return $this->post(ApiEnum::MAKE_DIR, $param);
     }
 
     /**
      * @param $target
      * @param $type
-     * @param int $offset
-     * @param int $size
-     * @param bool $withDownloadInfo
-     * @return array
+     *
      * @throws \Blankqwq\Exceptions\MiraiHttpException
      * @throws \Blankqwq\Mirai\Exceptions\MiraiException
-     * @throws \GuzzleHttp\Exception\GuzzleException {
-     * "name":"setu.png",
-     * "id":"/12314d-1wf13-a98ffa",
-     * "path":"/setu.png",
-     * "parent":null,
-     * "contact":{
-     * "id":123123,
-     * "name":"setu qun",
-     * "permission":"OWNER"
-     * },
-     * "isFile":true,
-     * "isDictionary":false,
-     * "isDirectory":false,
-     * "downloadInfo":{
-     * "sha1":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-     * "md5":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-     * "url":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-     * }
-     * }
+     * @throws \GuzzleHttp\Exception\GuzzleException     {
+     *                                                   "name":"setu.png",
+     *                                                   "id":"/12314d-1wf13-a98ffa",
+     *                                                   "path":"/setu.png",
+     *                                                   "parent":null,
+     *                                                   "contact":{
+     *                                                   "id":123123,
+     *                                                   "name":"setu qun",
+     *                                                   "permission":"OWNER"
+     *                                                   },
+     *                                                   "isFile":true,
+     *                                                   "isDictionary":false,
+     *                                                   "isDirectory":false,
+     *                                                   "downloadInfo":{
+     *                                                   "sha1":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     *                                                   "md5":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     *                                                   "url":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+     *                                                   }
+     *                                                   }
      */
     public function list($target, $type, int $offset = 0, int $size = 15, bool $withDownloadInfo = true): array
     {
         $param = [
                 'withDownloadInfo' => $withDownloadInfo,
                 'offset' => $offset,
-                'size' => $size
+                'size' => $size,
             ] + $this->makeTargetParam($target, $type);
+
         return $this->query(ApiEnum::GET_FILE_LIST, $param);
     }
 
@@ -123,16 +128,14 @@ trait FileApi
                 'id' => $id,
                 'withDownloadInfo' => $withDownloadInfo,
             ] + $this->makeTargetParam($target, $type);
+
         return $this->query(ApiEnum::GET_FILE_INFO, $param);
     }
-
 
     private function makeTargetParam($target, $type = 'group'): array
     {
         return [
-            $type => $target
+            $type => $target,
         ];
     }
-
-
 }

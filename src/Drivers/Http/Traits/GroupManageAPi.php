@@ -11,7 +11,6 @@
 
 namespace Blankqwq\Mirai\Drivers\Http\Traits;
 
-
 use Blankqwq\Mirai\Drivers\Http\ApiEnum;
 
 trait GroupManageAPi
@@ -197,7 +196,4 @@ trait GroupManageAPi
 
         return $this->post(ApiEnum::ADD_GROUP_MEMBER_REQUEST, $param);
     }
-
-
-
 }
