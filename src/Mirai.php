@@ -13,9 +13,11 @@ namespace Blankqwq\Mirai;
 
 use Blankqwq\Mirai\Contract\ApiContract;
 use Blankqwq\Mirai\Drivers\Http\Http;
+use Blankqwq\Mirai\Exceptions\NotFoundQQException;
 
 class Mirai
 {
+
     private $config = [
         'default' => 'http',
         'host' => 'localhost:8080',
@@ -37,12 +39,12 @@ class Mirai
         $this->config = array_merge($this->config, $config);
     }
 
+    /**
+     * @throws NotFoundQQException
+     */
     public function session($qq = null): ApiContract
     {
-        if (is_null($qq)) {
-            $qq = $this->getDefaultQQ();
-        }
-
+        $qq = $this->getQQ($qq);
         if (isset($this->driver[$qq])) {
             return $this->driver[$qq];
         }
@@ -54,9 +56,28 @@ class Mirai
         return $this->driver[$qq] = $this->default($qq);
     }
 
-    private function getDefaultQQ()
+    public function all(): array
     {
-        return is_array($this->config['account']) ? $this->config['account'][0] : $this->config['account'];
+        $accounts = $this->config['account'];
+        $res = [];
+        foreach ($accounts as $account) {
+            $res[] = $this->session($account);
+        }
+        return $res;
+    }
+
+    /**
+     * @throws NotFoundQQException
+     */
+    private function getQQ($qq)
+    {
+        if (empty($qq)) {
+            return is_array($this->config['account']) ? $this->config['account'][0] : $this->config['account'];
+        }
+        if (!in_array($qq, $this->config['account'])) {
+            throw new NotFoundQQException("can't found this qq 【 $qq 】");
+        }
+        return $qq;
     }
 
     private function make($name, $qq): ApiContract

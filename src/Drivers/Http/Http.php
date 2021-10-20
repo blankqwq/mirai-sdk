@@ -22,6 +22,8 @@ use Blankqwq\Mirai\Exceptions\MiraiException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class Http implements MiraiApiContract
 {
@@ -77,7 +79,11 @@ class Http implements MiraiApiContract
                 $sessionKey = $data['key'];
                 if (time() >= $data['tty']) {
                     $this->sessionKey = null;
-                    $this->release($this->qq, $sessionKey);
+                    try {
+                        $this->release($this->qq, $sessionKey);
+                    }catch (\Exception $exception){
+                        Log::info('clear-error');
+                    }
                 } else {
                     return $sessionKey;
                 }
@@ -215,7 +221,7 @@ class Http implements MiraiApiContract
                 $body = ['json' => $param];
             }
             $result = $this->client->request($method, $this->host.$api, $body);
-            \Log::info('request_data', [$this->host.$api, $method, $param, $result]);
+            \Log::info('request_data'.Str::limit(json_encode($param),500), [$this->host.$api, $method, $result]);
             $res = json_decode($result->getBody()->getContents(), true);
             if (MiraiErrorCode::SESSION_EXPIRE_ERR === $res['code']) {
                 $this->sessionKey = $this->getSessionKey(true);

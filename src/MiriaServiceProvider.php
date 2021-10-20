@@ -11,6 +11,8 @@
 
 namespace Blankqwq\Mirai;
 
+use Blankqwq\Mirai\StatusRoute\Router;
+
 class MiriaServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     protected $defer = true;
@@ -20,7 +22,11 @@ class MiriaServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app->singleton(Mirai::class, function () {
             return new Mirai(config('mirai'));
         });
+        $this->app->singleton(Router::class, function () {
+            return new Router();
+        });
         $this->app->alias(Mirai::class, 'mirai');
+        $this->app->alias(Router::class, 'mirai.router');
     }
 
     public function provides()

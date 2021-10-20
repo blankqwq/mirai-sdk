@@ -9,14 +9,21 @@
 
 - [x] Mirai 消息类型
 - [x] Mirai 事件类型
-- [ ] Mirai-http-adaptor
+- [x] 良好的IDE提示
+- [x] 请求翻译成对应类
+- [-] Mirai-http-adaptor
     - [x] http
     - [ ] websocket
-- [ ] 状态事件路由
-    - [ ] 单独一个插件
+- [x] 状态事件路由
+    - [x] 单独一个插件
 
 
-> 快速开始
+> ### 快速开始
+
+安装
+```
+composer require blankqwq/mirai-sdk:dev-master -vvv
+```
 
 config/mirai.php
 
@@ -35,6 +42,7 @@ config/mirai.php
 ]
 ```
 
+> 简单示例
 
 使用默认qq进行拍一拍
 ```php
@@ -57,10 +65,9 @@ Mirai::session($qq)->sendNudge($sender['id'], $group['id']);
 ..
 
 ```
-
 若为拍一拍目标为机器人时，机器人也进行拍一拍
-
 ```php
+
 $eventOrMessage = \Blankqwq\Mirai\Translate::get($request);
 if ($event instanceof NudgeEvent) {
     Log::info('success_event', [$currentQQ,$event]);
@@ -70,8 +77,23 @@ if ($event instanceof NudgeEvent) {
 }
 
 ```
+## API
 
-### 鸣谢
+> 参考[`project-mirai/mirai-api-http`](https://github.com/project-mirai/mirai-api-http)Adaptor文档
+
+匹配
+```php
+Translate::match($request,NudgeEvent::class,function($event){
+
+
+});
+
+```
+
+
+## 参与贡献
+
+## 鸣谢
 
 [`mirai`](https://github.com/mamoe/mirai) <br>
 [`project-mirai/mirai-api-http`](https://github.com/project-mirai/mirai-api-http)<br>

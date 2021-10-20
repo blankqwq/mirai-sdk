@@ -22,14 +22,15 @@ trait MessageApi
      *
      * @return mixed
      */
-    public function sendFriendMsg($user_id, $message, $messageChain = false)
+    public function sendFriendMsg($user_id, $messageChain, $messageId=null)
     {
         $param = [
             'target' => $user_id,
-            'quote' => $message,
             'messageChain' => $messageChain,
         ];
-
+        if ($messageId){
+            $param['quote'] = $messageId;
+        }
         return $this->post(ApiEnum::SEND_FRIEND_MESSAGE, $param);
     }
 
