@@ -11,8 +11,6 @@
 
 namespace Blankqwq\Mirai\Message;
 
-use Illuminate\Support\Arr;
-
 class Message
 {
     public $type;
@@ -25,7 +23,7 @@ class Message
     public $group = [];
     public $sender = [];
     public $messageChain = [];
-    public $other=[];
+    public $other = [];
     public $origin = [];
 
     public function __construct($type, $data = [])
@@ -45,8 +43,9 @@ class Message
         $this->messageChain = $messageChain;
     }
 
-    private function parseToProperty(){
-        foreach ($this->messageChain as $item){
+    private function parseToProperty()
+    {
+        foreach ($this->messageChain as $item) {
             $type = strtolower($item['type']);
             $this->$type($item);
         }
@@ -62,18 +61,20 @@ class Message
             }
             $data = $data[$item];
         }
+
         return $data;
     }
 
-    private function plain($item){
-        $this->text.=$item['text'];
+    private function plain($item)
+    {
+        $this->text .= $item['text'];
     }
 
     public function __call($name, $arguments)
     {
-        if (isset($this->$name)){
-            $this->$name[]=$arguments;
-        }else{
+        if (isset($this->$name)) {
+            $this->$name[] = $arguments;
+        } else {
             $this->other[] = $arguments;
         }
     }
@@ -83,5 +84,4 @@ class Message
         // MessageChain => MiraiCode
         return '';
     }
-
 }

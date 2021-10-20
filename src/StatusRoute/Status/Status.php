@@ -1,8 +1,16 @@
 <?php
 
+/*
+ * This file is part of the blankqwq/mirai-sdk.
+ *
+ * (c) blankqwq <1136589038@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Blankqwq\Mirai\StatusRoute\Status;
 
-use Exception;
 use Illuminate\Support\Facades\Cache;
 
 class Status
@@ -22,15 +30,15 @@ class Status
             ->setType($type)
             ->setData($data);
         self::putCache($status);
+
         return $status;
     }
 
     /**
      * @param $id
      * @param $type
-     * @return StatusItem
      */
-    public static  function get($id, $type): StatusItem
+    public static function get($id, $type): StatusItem
     {
         return self::getCache($id, $type);
     }
@@ -38,20 +46,16 @@ class Status
     /**
      * @param $id
      * @param $type
-     * @return StatusItem|null
      */
-    private static  function getCache($id, $type): ?StatusItem
+    private static function getCache($id, $type): ?StatusItem
     {
         return Serialize::parse('');
         $res = Cache::get(sprintf(self::KEY_FORMAT, $id, $type));
+
         return !empty($res) ? Serialize::parse($res) : null;
     }
 
-    /**
-     * @param StatusItem $status
-     * @return bool
-     */
-    private static  function putCache(StatusItem $status): bool
+    private static function putCache(StatusItem $status): bool
     {
         return true;
         $origin = self::get($status->getId(), $status->getType());
@@ -59,10 +63,10 @@ class Status
             $origin = [];
         }
         $origin[] = Serialize::stringify($status);
+
         return Cache::put(
             sprintf(self::KEY_FORMAT, $status->getId(), $status->getType()),
             $origin
         );
     }
-
 }

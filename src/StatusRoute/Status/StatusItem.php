@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the blankqwq/mirai-sdk.
+ *
+ * (c) blankqwq <1136589038@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Blankqwq\Mirai\StatusRoute\Status;
 
 class StatusItem
@@ -27,6 +36,7 @@ class StatusItem
     public function setId($id): StatusItem
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -44,8 +54,8 @@ class StatusItem
     public function setType($type)
     {
         $this->type = $type;
-        return $this;
 
+        return $this;
     }
 
     /**
@@ -62,8 +72,8 @@ class StatusItem
     public function setStatus($status): StatusItem
     {
         $this->status = $status;
-        return $this;
 
+        return $this;
     }
 
     /**
@@ -80,43 +90,34 @@ class StatusItem
     public function setData($data): StatusItem
     {
         $this->data = $data;
-        return $this;
 
+        return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getChildren(): array
     {
         return $this->children;
     }
 
-    /**
-     * @param array $children
-     * @return StatusItem
-     */
     public function setChildren(array $children): StatusItem
     {
         $this->children = $children;
+
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getTimeout(): int
     {
         return $this->timeout;
     }
 
     /**
-     * @param int $timeout
      * @return StatusItem
      */
     public function setTimeout(int $timeout)
     {
         $this->timeout = $timeout;
+
         return $this;
     }
 
@@ -134,7 +135,7 @@ class StatusItem
     public function setTimeoutHandler($timeoutHandler): StatusItem
     {
         $this->timeoutHandler = $timeoutHandler;
+
         return $this;
     }
-
 }

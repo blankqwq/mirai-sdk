@@ -1,8 +1,15 @@
 <?php
 
-namespace Blankqwq\Mirai\StatusRoute;
+/*
+ * This file is part of the blankqwq/mirai-sdk.
+ *
+ * (c) blankqwq <1136589038@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
-use Blankqwq\Mirai\StatusRoute\Status\StatusItem;
+namespace Blankqwq\Mirai\StatusRoute;
 
 class Route
 {
@@ -11,7 +18,7 @@ class Route
     private $action;
 
     private const ACTION_TYPE = [
-        'command','status','event'
+        'command', 'status', 'event',
     ];
     private $router;
     private $container;
@@ -31,9 +38,6 @@ class Route
         return $this;
     }
 
-    /**
-     *
-     */
     public function group(...$groups): Route
     {
         return $this;
@@ -42,17 +46,16 @@ class Route
     public function run()
     {
         //获取action
-
     }
 
     /**
      * @param $qq
+     *
      * @return $this
-     * 绑定特定QQ
+     *               绑定特定QQ
      */
     public function qq($qq): Route
     {
         return $this;
     }
-
 }
