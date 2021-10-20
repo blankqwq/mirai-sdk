@@ -14,7 +14,6 @@ namespace Blankqwq\Mirai;
 use Blankqwq\Mirai\Enums\MessageEnum;
 use Blankqwq\Mirai\Event\Event;
 use Blankqwq\Mirai\Message\Message;
-use Illuminate\Support\Arr;
 
 class Translate
 {
@@ -33,12 +32,12 @@ class Translate
         if (in_array($type, MessageEnum::MESSAGE_TYPE)) {
             return self::makeMessage($request, $type);
         }
+
         return self::makeEvent($request, $type);
     }
 
     /**
      * @param $request
-     * @return Message|null
      */
     public static function getMessage($request): ?Message
     {
@@ -46,9 +45,9 @@ class Translate
         if (in_array($type, MessageEnum::MESSAGE_TYPE)) {
             return self::makeMessage($request, $type);
         }
+
         return null;
     }
-
 
     /**
      * @throws \Exception
@@ -59,6 +58,7 @@ class Translate
         if (!in_array($type, MessageEnum::MESSAGE_TYPE)) {
             return self::makeEvent($request, $type);
         }
+
         return null;
     }
 
@@ -67,12 +67,12 @@ class Translate
      */
     private static function makeEvent($data, $type)
     {
-        $className = sprintf(self::EVENT_NAME_SPACE . '%s', $type);
+        $className = sprintf(self::EVENT_NAME_SPACE.'%s', $type);
         if (class_exists($className)) {
             // 依赖注入
             return self::make($className, $data);
         }
-        throw new \Exception('Cant find the event [' . $type . ']!');
+        throw new \Exception('Cant find the event ['.$type.']!');
     }
 
     private static function make($name, $data)
@@ -93,6 +93,7 @@ class Translate
                     }
                 }
             }
+
             return $res;
         } catch (\Exception $exception) {
             throw new \Exception($exception->getMessage());
@@ -111,11 +112,11 @@ class Translate
         if ($res instanceof $type) {
             return $closure($res);
         }
+
         return null;
     }
 
-    public static function matches(){
-
+    public static function matches()
+    {
     }
-
 }

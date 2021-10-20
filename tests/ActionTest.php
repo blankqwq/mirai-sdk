@@ -9,12 +9,10 @@
  * with this source code in the file LICENSE.
  */
 
-use Blankqwq\Mirai\StatusRoute\Route;
 use Blankqwq\Mirai\StatusRoute\Router;
 
 class ActionTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testStatusRoute()
     {
         $statusRouter = new Router();
@@ -22,31 +20,31 @@ class ActionTest extends \PHPUnit\Framework\TestCase
             var_dump($message);
         })->qq(1136589922);
         $statusRouter->command('签到', function ($message) {
-                var_dump($message, ['test']);
-            })->qq(1136589911);
+            var_dump($message, ['test']);
+        })->qq(1136589911);
         $statusRouter->match([
             'type' => 'GroupMessage',
             'messageChain' => [
                 [
-                    'id' => 1
+                    'id' => 1,
                 ],
                 [
                     'type' => 'Plain',
-                    'text' => '签到'
-                ]
-            ]
+                    'text' => '签到',
+                ],
+            ],
         ], 1136589922);
         $statusRouter->match([
             'type' => 'GroupMessage',
             'messageChain' => [
                 [
-                    'id' => 1
+                    'id' => 1,
                 ],
                 [
                     'type' => 'Plain',
-                    'text' => '签到'
-                ]
-            ]
+                    'text' => '签到',
+                ],
+            ],
         ], 1136589911);
     }
 }

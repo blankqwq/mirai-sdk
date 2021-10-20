@@ -81,7 +81,7 @@ class Http implements MiraiApiContract
                     $this->sessionKey = null;
                     try {
                         $this->release($this->qq, $sessionKey);
-                    }catch (\Exception $exception){
+                    } catch (\Exception $exception) {
                         Log::info('clear-error');
                     }
                 } else {
@@ -221,7 +221,7 @@ class Http implements MiraiApiContract
                 $body = ['json' => $param];
             }
             $result = $this->client->request($method, $this->host.$api, $body);
-            \Log::info('request_data'.Str::limit(json_encode($param),500), [$this->host.$api, $method, $result]);
+            \Log::info('request_data'.Str::limit(json_encode($param), 500), [$this->host.$api, $method, $result]);
             $res = json_decode($result->getBody()->getContents(), true);
             if (MiraiErrorCode::SESSION_EXPIRE_ERR === $res['code']) {
                 $this->sessionKey = $this->getSessionKey(true);

@@ -17,7 +17,6 @@ use Blankqwq\Mirai\Exceptions\NotFoundQQException;
 
 class Mirai
 {
-
     private $config = [
         'default' => 'http',
         'host' => 'localhost:8080',
@@ -63,6 +62,7 @@ class Mirai
         foreach ($accounts as $account) {
             $res[] = $this->session($account);
         }
+
         return $res;
     }
 
@@ -77,6 +77,7 @@ class Mirai
         if (!in_array($qq, $this->config['account'])) {
             throw new NotFoundQQException("can't found this qq 【 $qq 】");
         }
+
         return $qq;
     }
 
