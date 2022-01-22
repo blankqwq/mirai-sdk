@@ -26,4 +26,6 @@ interface MiraiApiContract extends ApiContract
     public function countMessage(): array;
 
     public function about(): array;
+
+    public function parseMessage($message);
 }

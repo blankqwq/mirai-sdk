@@ -19,6 +19,7 @@ use Blankqwq\Mirai\Drivers\Http\Traits\ManageApi;
 use Blankqwq\Mirai\Drivers\Http\Traits\MessageApi;
 use Blankqwq\Mirai\Enums\MiraiErrorCode;
 use Blankqwq\Mirai\Exceptions\MiraiException;
+use Blankqwq\Mirai\Message\MessageItem\MessageGroup;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Cache;
@@ -54,6 +55,18 @@ class Http implements MiraiApiContract
         $this->tty = $tty;
         $this->verify = $verify;
         $this->sessionKey = $this->getSessionKey();
+    }
+
+    public function parseMessage($data){
+        if (isset($data['messageChain'])){
+            $messageChain = $data['messageChain'];
+            if (is_array($messageChain)){
+                // 其他处理
+            }else if ($messageChain instanceof MessageGroup){
+                $data['messageChain'] = $messageChain->getData();
+            }
+        }
+        return $data;
     }
 
     /**
@@ -215,6 +228,7 @@ class Http implements MiraiApiContract
             if (!empty($this->sessionKey)) {
                 $param['sessionKey'] = $this->sessionKey; //追加access_token到参数表
             }
+            $param = $this->parseMessage($param);
             if ('GET' === $method) {
                 $body = ['query' => $param];
             } else {

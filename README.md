@@ -11,12 +11,12 @@
 - [x] Mirai 事件类型
 - [x] 良好的IDE提示
 - [x] 请求翻译成对应类
-- [-] Mirai-http-adaptor
+- [ ] Mirai-http-adaptor
     - [x] http
     - [ ] websocket
 - [x] 状态事件路由
     - [x] 单独一个插件
-
+- [ ] GoCq适配
 
 > ### 快速开始
 
@@ -61,7 +61,6 @@ use Blankqwq\Mirai\Mirai;
 
 $qq='1234567890';
 Mirai::session($qq)->sendNudge($sender['id'], $group['id']);
-
 ..
 
 ```
@@ -77,11 +76,33 @@ if ($event instanceof NudgeEvent) {
 }
 
 ```
+
+发送群组消息
+
+```php
+  $mirai->sendGroupMsg($qq,new MessageGroup(new Text(Arr::random(['没有了~','被玩坏了！','再问我要给你一拳','干哈，爷就是没有','？还来']))));
+```
+发送给好友
+```php
+$mirai->sendFriendMsg($qq->subject['id'],new MessageGroup(new Text(Arr::random(['没有了~','被玩坏了！','再问我要给你一拳','干哈，爷就是没有','？还来']))));
+```
+多消息类型
+```php
+$imageMessage= new \Blankqwq\Mirai\Message\MessageItem\Image();
+$imageMessage->setBase64(''));
+new MessageGroup(new Text(),new Image($imageMessage),...);
+
+```
+
+...待更新
+
 ## API
+
+采用小驼峰命名
 
 > 参考[`project-mirai/mirai-api-http`](https://github.com/project-mirai/mirai-api-http)Adaptor文档
 
-匹配
+事件匹配
 ```php
 Translate::match($request,NudgeEvent::class,function($event){
 

@@ -25,6 +25,7 @@ class MessageGroup implements MessageTypeContract, \ArrayAccess
     public function add(MessageTypeContract $message)
     {
         $this->data[] = $message;
+        return $this;
     }
 
     public function getData(): array
