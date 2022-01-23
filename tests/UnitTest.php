@@ -37,7 +37,7 @@ class UnitTest extends \PHPUnit\Framework\TestCase
         $w = \Mockery::mock(Mirai::class, [])->makePartial();
         $w->allows()->getHttpClient()->andReturn($client); // $client 为上面创建的模拟实例。
         // 然后调用 `getWeather` 方法，并断言返回值为模拟的返回值。
-        $this->assertSame(['success' => true], $w->session()->sendGroupMsg(1,));
+        $this->assertSame(['success' => true], $w->session()->sendGroupMsg(1, ));
     }
 
     public function testTranslate()

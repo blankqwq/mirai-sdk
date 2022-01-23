@@ -57,15 +57,17 @@ class Http implements MiraiApiContract
         $this->sessionKey = $this->getSessionKey();
     }
 
-    public function parseMessage($data){
-        if (isset($data['messageChain'])){
+    public function parseMessage($data)
+    {
+        if (isset($data['messageChain'])) {
             $messageChain = $data['messageChain'];
-            if (is_array($messageChain)){
+            if (is_array($messageChain)) {
                 // 其他处理
-            }else if ($messageChain instanceof MessageGroup){
+            } elseif ($messageChain instanceof MessageGroup) {
                 $data['messageChain'] = $messageChain->getData();
             }
         }
+
         return $data;
     }
 
