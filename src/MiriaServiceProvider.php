@@ -11,7 +11,6 @@
 
 namespace Blankqwq\Mirai;
 
-
 class MiriaServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     protected $defer = true;

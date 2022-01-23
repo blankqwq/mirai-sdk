@@ -24,18 +24,21 @@ class File extends Base
     public function setUrl($url)
     {
         $this->data['url'] = $url;
+
         return $this;
     }
 
     public function setPath($path)
     {
         $this->data['path'] = $path;
+
         return $this;
     }
 
     public function setBase64($value)
     {
         $this->data['base64'] = $value;
+
         return $this;
     }
 }
