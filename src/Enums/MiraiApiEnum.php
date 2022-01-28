@@ -54,19 +54,19 @@ class ApiEnum
     public const MEMBER_INFO = 'memberInfo';
 
     // 事件处理
-    public const ADD_FRIEND_REQUEST = 'resp/newFriendRequestEvent';
-    public const ADD_GROUP_MEMBER_REQUEST = 'resp/memberJoinRequestEvent';
-    public const INVITE_ROBOT_REQUEST = 'resp/botInvitedJoinGroupRequestEvent';
+    public const ADD_FRIEND_REQUEST = 'resp|newFriendRequestEvent';
+    public const ADD_GROUP_MEMBER_REQUEST = 'resp|memberJoinRequestEvent';
+    public const INVITE_ROBOT_REQUEST = 'resp|botInvitedJoinGroupRequestEvent';
 
     // 文件操作
     public const GET_FILE_LIST = 'file/list';
     public const GET_FILE_INFO = 'file/info';
     public const MAKE_DIR = 'file/mkdir';
-    public const DELETE_FILE = 'file/delete';
-    public const MOVE_FILE = 'file/move';
-    public const RENAME_FILE = 'file/rename';
+    public const DELETE_FILE = 'file|delete';
+    public const MOVE_FILE = 'file|move';
+    public const RENAME_FILE = 'file|rename';
 
     public const UPLOAD_IMAGE = 'uploadImage';
     public const UPLOAD_VOICE = 'uploadVoice';
-    public const UPLOAD_FILE = 'file/upload';
+    public const UPLOAD_FILE = 'file|upload';
 }

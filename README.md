@@ -1,7 +1,5 @@
 # Laravel mirai sdk
 
-[![StyleCI](https://github.styleci.io/repos/399045334/shield?branch=main)](https://github.styleci.io/repos/399045334?branch=main)
-
 > 用于在`laravel`开发[`mirai`](https://github.com/mamoe/mirai) 机器人后端
 
 ### 开发中
