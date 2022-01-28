@@ -13,7 +13,7 @@ namespace Blankqwq\Mirai\Contract;
 
 interface MiraiApiContract extends ApiContract
 {
-    public function __construct($qq, $host, $verify = '', $tty = 7200);
+    public function __construct($mirai, $qq, $host, $verify = '', $tty = 7200);
 
     public function getSessionKey($clear = false);
 

@@ -12,13 +12,14 @@
 namespace Blankqwq\Mirai;
 
 use Blankqwq\Mirai\Contract\ApiContract;
-use Blankqwq\Mirai\Drivers\Http\Http;
+use Blankqwq\Mirai\Drivers\Mirai\Http;
 use Blankqwq\Mirai\Exceptions\NotFoundQQException;
 
 class Mirai
 {
     private $config = [
         'default' => 'http',
+        'debug' => true,
         'host' => 'localhost:8080',
         'verify' => '',
         'tty' => 7200,
@@ -28,6 +29,9 @@ class Mirai
         'drivers' => [
             'http' => Http::class,
         ],
+        'guzzleConfig' => [
+
+        ]
     ];
 
     private $driver = null;
@@ -83,7 +87,7 @@ class Mirai
 
     private function make($name, $qq): ApiContract
     {
-        return new $name($qq, trim($this->config['host'], '/'), $this->config['verify'], $this->config['tty']);
+        return new $name($this, $qq, trim($this->config['host'], '/'), $this->config['verify'], $this->config['tty']);
     }
 
     /**
@@ -94,5 +98,10 @@ class Mirai
     private function default($qq): ApiContract
     {
         return $this->make(Http::class, $qq);
+    }
+
+    public function config($key, $default)
+    {
+        return $this->config[$key] ?? $default;
     }
 }

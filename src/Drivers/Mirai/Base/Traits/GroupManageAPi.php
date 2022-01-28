@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Blankqwq\Mirai\Drivers\Http\Traits;
+namespace Blankqwq\Mirai\Drivers\Mirai\Base\Traits;
 
-use Blankqwq\Mirai\Drivers\Http\ApiEnum;
+use Blankqwq\Mirai\Enums\ApiEnum;
 
 trait GroupManageAPi
 {
@@ -136,6 +136,14 @@ trait GroupManageAPi
         return $this->post(ApiEnum::GROUP_CONFIG, $param);
     }
 
+    /***
+     * @param $target
+     * @param $memberId
+     * @return array
+     * @throws \Blankqwq\Exceptions\MiraiHttpException
+     * @throws \Blankqwq\Mirai\Exceptions\MiraiException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function getGroupMember($target, $memberId)
     {
         $param = [

@@ -14,8 +14,10 @@ namespace Blankqwq\Mirai\Enums;
 class MessageEnum
 {
     public const MESSAGE_TYPE = [
-        'FriendMessage', 'GroupMessage',
-        'TempMessage', 'StrangerMessage',
+        'FriendMessage',
+        'GroupMessage',
+        'TempMessage',
+        'StrangerMessage',
         'OtherClientMessage',
     ];
 }

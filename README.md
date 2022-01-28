@@ -4,8 +4,13 @@
 
 > 用于在`laravel`开发[`mirai`](https://github.com/mamoe/mirai) 机器人后端
 
-开发中
+### 开发中
 
+> 目前为测试版,所以更新较为频繁。 
+
+所有功能完成后发布的v1.0.0
+
+大部分完成后发布v0.x.0
 
 - [x] Mirai 消息类型
 - [x] Mirai 事件类型
@@ -16,6 +21,7 @@
     - [ ] websocket
 - [x] 状态事件路由
     - [x] 单独一个插件
+    - [ ] 完善功能
 - [ ] GoCq适配
 
 > ### 快速开始
@@ -25,20 +31,25 @@
 composer require blankqwq/mirai-sdk:dev-master -vvv
 ```
 
-config/mirai.php
+创建配置文件 `config/mirai.php`
 
 ```php
-[
+use Blankqwq\Mirai\Drivers\Mirai\Http;
+return [
     'default' => 'http', // 使用的驱动
+    'debug'=>true,      // 日志记录
     'host' => 'localhost:8080', // adaptor地址
     'verify' => '', // 校验码
     'tty' => 7200, // session过期时间
     'account' => [
         'qq号', // qq号，可以为多个
     ],
-    'drivers' => [
-        'http' => Http::class, // 驱动列表
+    'drivers' => [ // 驱动列表,非必填(不建议设置,除非有自定义需求)
+        'http' => Http::class, 
     ],
+    'guzzleConfig'=>[
+
+    ]
 ]
 ```
 
@@ -84,17 +95,22 @@ if ($event instanceof NudgeEvent) {
 ```
 发送给好友
 ```php
-$mirai->sendFriendMsg($qq->subject['id'],new MessageGroup(new Text(Arr::random(['没有了~','被玩坏了！','再问我要给你一拳','干哈，爷就是没有','？还来']))));
+$mirai->sendFriendMsg(
+        $qq->subject['id'], // 此处为qq
+        new MessageGroup(new Text(Arr::random(['没有了~','被玩坏了！','再问我要给你一拳','干哈，爷就是没有','？还来'])))
+    );
 ```
 多消息类型
 ```php
 $imageMessage= new \Blankqwq\Mirai\Message\MessageItem\Image();
-$imageMessage->setBase64(''));
-new MessageGroup(new Text(),new Image($imageMessage),...);
+$imageMessage->setBase64(''));  // base64编码
+$imageMessage->setUrl('http://..'); // 图片地址
+$at = new \Blankqwq\Mirai\Message\MessageItem\At('qq号');
+new MessageGroup($at,new Text(),new Image($imageMessage),...);
 
 ```
 
-...待更新
+更多内容请查阅文档
 
 ## API
 
@@ -105,14 +121,14 @@ new MessageGroup(new Text(),new Image($imageMessage),...);
 事件匹配
 ```php
 Translate::match($request,NudgeEvent::class,function($event){
-
+    // 事件执行的回调
 
 });
-
 ```
 
 
 ## 参与贡献
+
 
 ## 鸣谢
 

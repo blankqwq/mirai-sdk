@@ -9,12 +9,17 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Blankqwq\Mirai\Drivers\Http\Traits;
+namespace Blankqwq\Mirai\Drivers\Mirai\Base\Traits;
 
-use Blankqwq\Mirai\Drivers\Http\ApiEnum;
+use Blankqwq\Mirai\Enums\ApiEnum;
 
 trait FileApi
 {
+    /**
+     * @param $type
+     * @param $image
+     * @return array
+     */
     public function uploadImage($type, $image): array
     {
         $param = [
@@ -25,6 +30,12 @@ trait FileApi
         return $this->post(ApiEnum::UPLOAD_IMAGE, $param);
     }
 
+    /**
+     * @param $type
+     * @param $voice
+     * @return array
+     * 上传语音
+     */
     public function uploadVoice($type, $voice): array
     {
         $param = [
@@ -88,10 +99,7 @@ trait FileApi
     /**
      * @param $target
      * @param $type
-     *
-     * @throws \Blankqwq\Exceptions\MiraiHttpException
-     * @throws \Blankqwq\Mirai\Exceptions\MiraiException
-     * @throws \GuzzleHttp\Exception\GuzzleException     {
+     * {
      *                                                   "name":"setu.png",
      *                                                   "id":"/12314d-1wf13-a98ffa",
      *                                                   "path":"/setu.png",
@@ -122,6 +130,13 @@ trait FileApi
         return $this->query(ApiEnum::GET_FILE_LIST, $param);
     }
 
+    /**
+     * @param $id
+     * @param $target
+     * @param $type
+     * @param $withDownloadInfo
+     * @return mixed
+     */
     public function info($id, $target, $type, $withDownloadInfo = true)
     {
         $param = [
@@ -132,6 +147,11 @@ trait FileApi
         return $this->query(ApiEnum::GET_FILE_INFO, $param);
     }
 
+    /**
+     * @param $target
+     * @param $type
+     * @return array
+     */
     private function makeTargetParam($target, $type = 'group'): array
     {
         return [

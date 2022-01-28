@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Blankqwq\Mirai\Drivers\Http\Traits;
+namespace Blankqwq\Mirai\Drivers\Mirai\Base\Traits;
 
-use Blankqwq\Mirai\Drivers\Http\ApiEnum;
+use Blankqwq\Mirai\Enums\ApiEnum;
 
 trait MessageApi
 {
@@ -28,11 +28,12 @@ trait MessageApi
             'target' => $user_id,
             'messageChain' => $messageChain,
         ];
+
         if ($messageId) {
             $param['quote'] = $messageId;
         }
 
-        return $this->post(ApiEnum::SEND_FRIEND_MESSAGE, $param);
+        return $this->send(ApiEnum::SEND_FRIEND_MESSAGE, $param);
     }
 
     /**
@@ -50,7 +51,7 @@ trait MessageApi
             'messageChain' => $messageChain,
         ];
 
-        return $this->post(ApiEnum::SEND_TEMP_MESSAGE, $param);
+        return $this->send(ApiEnum::SEND_TEMP_MESSAGE, $param);
     }
 
     /**
@@ -78,9 +79,8 @@ trait MessageApi
     /**
      * @param $user_id
      * @param $subject
-     *
+     * @param string $kind
      * @return array
-     *
      * @throws \Blankqwq\Exceptions\MiraiHttpException
      * @throws \Blankqwq\Mirai\Exceptions\MiraiException
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -96,10 +96,12 @@ trait MessageApi
         return $this->post(ApiEnum::SEND_NUDGE, $param);
     }
 
-    /**
+    /***
      * @param $message_id
-     *
      * @return array
+     * @throws \Blankqwq\Exceptions\MiraiHttpException
+     * @throws \Blankqwq\Mirai\Exceptions\MiraiException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function deleteMsg($message_id)
     {
@@ -112,8 +114,10 @@ trait MessageApi
 
     /**
      * @param $message_id
-     *
-     * @return mixed
+     * @return array
+     * @throws \Blankqwq\Exceptions\MiraiHttpException
+     * @throws \Blankqwq\Mirai\Exceptions\MiraiException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function recall($message_id)
     {

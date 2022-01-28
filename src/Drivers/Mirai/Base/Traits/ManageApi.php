@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Blankqwq\Mirai\Drivers\Http\Traits;
+namespace Blankqwq\Mirai\Drivers\Mirai\Base\Traits;
 
-use Blankqwq\Mirai\Drivers\Http\ApiEnum;
+use Blankqwq\Mirai\Enums\ApiEnum;
 
 trait ManageApi
 {
@@ -19,10 +19,6 @@ trait ManageApi
      * @param $target
      *
      * @return array
-     *
-     * @throws \Blankqwq\Exceptions\MiraiHttpException
-     * @throws \Blankqwq\Mirai\Exceptions\MiraiException
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function deleteFriend($target)
     {
@@ -41,10 +37,6 @@ trait ManageApi
      * @param string $message
      *
      * @return array
-     *
-     * @throws \Blankqwq\Exceptions\MiraiHttpException
-     * @throws \Blankqwq\Mirai\Exceptions\MiraiException
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function solveAddFriend($eventId, $fromId, $groupId, $operate = 0, $message = '')
     {
@@ -67,10 +59,6 @@ trait ManageApi
      * @param string $message
      *
      * @return array
-     *
-     * @throws \Blankqwq\Exceptions\MiraiHttpException
-     * @throws \Blankqwq\Mirai\Exceptions\MiraiException
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function solveInviteGroupRequest($eventId, $fromId, $groupId, $operate = 0, $message = '')
     {
@@ -101,10 +89,6 @@ trait ManageApi
 
     /**
      * @return array
-     *
-     * @throws \Blankqwq\Exceptions\MiraiHttpException
-     * @throws \Blankqwq\Mirai\Exceptions\MiraiException
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getFriendList()
     {
@@ -114,7 +98,6 @@ trait ManageApi
     /**
      * @return mixed|null
      *
-     * @throws \Exception|\GuzzleHttp\Exception\GuzzleException
      *                                                          "nickname":"nickname",
      *                                                          "email":"email",
      *                                                          "age":18,
@@ -140,9 +123,6 @@ trait ManageApi
      *
      * @return array
      *
-     * @throws \Blankqwq\Exceptions\MiraiHttpException
-     * @throws \Blankqwq\Mirai\Exceptions\MiraiException
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getFriendInfo($target)
     {
