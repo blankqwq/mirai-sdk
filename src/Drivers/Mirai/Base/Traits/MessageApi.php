@@ -11,7 +11,7 @@
 
 namespace Blankqwq\Mirai\Drivers\Mirai\Base\Traits;
 
-use Blankqwq\Mirai\Enums\ApiEnum;
+use Blankqwq\Mirai\Enums\MiraiApiEnum;
 
 trait MessageApi
 {
@@ -33,7 +33,7 @@ trait MessageApi
             $param['quote'] = $messageId;
         }
 
-        return $this->send(ApiEnum::SEND_FRIEND_MESSAGE, $param);
+        return $this->send(MiraiApiEnum::SEND_FRIEND_MESSAGE, $param);
     }
 
     /**
@@ -51,7 +51,7 @@ trait MessageApi
             'messageChain' => $messageChain,
         ];
 
-        return $this->send(ApiEnum::SEND_TEMP_MESSAGE, $param);
+        return $this->send(MiraiApiEnum::SEND_TEMP_MESSAGE, $param);
     }
 
     /**
@@ -73,7 +73,7 @@ trait MessageApi
             'quote' => $messageId,
         ];
 
-        return $this->post(ApiEnum::SEND_GROUP_MESSAGE, $param);
+        return $this->post(MiraiApiEnum::SEND_GROUP_MESSAGE, $param);
     }
 
     /**
@@ -93,7 +93,7 @@ trait MessageApi
             'kind' => $kind,
         ];
 
-        return $this->post(ApiEnum::SEND_NUDGE, $param);
+        return $this->post(MiraiApiEnum::SEND_NUDGE, $param);
     }
 
     /***
@@ -109,7 +109,7 @@ trait MessageApi
             'target' => $message_id,
         ];
 
-        return $this->post(ApiEnum::RECALL, $param);
+        return $this->post(MiraiApiEnum::RECALL, $param);
     }
 
     /**
@@ -137,6 +137,6 @@ trait MessageApi
             'target' => $message_id,
         ];
 
-        return $this->query(ApiEnum::GET_MESSAGE, $param);
+        return $this->query(MiraiApiEnum::GET_MESSAGE, $param);
     }
 }

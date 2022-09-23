@@ -11,7 +11,7 @@
 
 namespace Blankqwq\Mirai\Enums;
 
-class ApiEnum
+class MiraiApiEnum
 {
     // 插件信息
     public const VERIFY = 'verify';

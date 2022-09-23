@@ -11,7 +11,7 @@
 
 namespace Blankqwq\Mirai\Drivers\Mirai\Base\Traits;
 
-use Blankqwq\Mirai\Enums\ApiEnum;
+use Blankqwq\Mirai\Enums\MiraiApiEnum;
 
 trait GroupManageAPi
 {
@@ -21,12 +21,12 @@ trait GroupManageAPi
             'target' => $target,
         ];
 
-        return $this->query(ApiEnum::GET_GROUP_MEMBERS, $param);
+        return $this->query(MiraiApiEnum::GET_GROUP_MEMBERS, $param);
     }
 
     public function getGroups()
     {
-        return $this->query(ApiEnum::GET_GROUPS);
+        return $this->query(MiraiApiEnum::GET_GROUPS);
     }
 
     public function getGroupMemInfo($target, $memberId)
@@ -36,7 +36,7 @@ trait GroupManageAPi
             'memberId' => $memberId,
         ];
 
-        return $this->query(ApiEnum::GET_GROUP_MEMBER_INFO, $param);
+        return $this->query(MiraiApiEnum::GET_GROUP_MEMBER_INFO, $param);
     }
 
     public function muteMember($target, $member, $time)
@@ -47,7 +47,7 @@ trait GroupManageAPi
             'time' => $time,
         ];
 
-        return $this->post(ApiEnum::MUTE, $param);
+        return $this->post(MiraiApiEnum::MUTE, $param);
     }
 
     public function unMuteMember($target, $member)
@@ -57,7 +57,7 @@ trait GroupManageAPi
             'member' => $member,
         ];
 
-        return $this->post(ApiEnum::UNMUTE, $param);
+        return $this->post(MiraiApiEnum::UNMUTE, $param);
     }
 
     public function deleteMember($target, $member, $msg)
@@ -68,7 +68,7 @@ trait GroupManageAPi
             'msg' => $msg,
         ];
 
-        return $this->post(ApiEnum::DELETE_GROUP_MEMBER, $param);
+        return $this->post(MiraiApiEnum::DELETE_GROUP_MEMBER, $param);
     }
 
     public function muteAll($target)
@@ -77,7 +77,7 @@ trait GroupManageAPi
             'target' => $target,
         ];
 
-        return $this->post(ApiEnum::MUTE_ALL, $param);
+        return $this->post(MiraiApiEnum::MUTE_ALL, $param);
     }
 
     public function unMuteAll($target)
@@ -86,7 +86,7 @@ trait GroupManageAPi
             'target' => $target,
         ];
 
-        return $this->post(ApiEnum::UNMUTE_ALL, $param);
+        return $this->post(MiraiApiEnum::UNMUTE_ALL, $param);
     }
 
     public function quiteGroup($target)
@@ -95,7 +95,7 @@ trait GroupManageAPi
             'target' => $target,
         ];
 
-        return $this->post(ApiEnum::QUIT_GROUP, $param);
+        return $this->post(MiraiApiEnum::QUIT_GROUP, $param);
     }
 
     public function setEssence($message_id)
@@ -104,7 +104,7 @@ trait GroupManageAPi
             'target' => $message_id,
         ];
 
-        return $this->post(ApiEnum::SET_ESSENCE, $param);
+        return $this->post(MiraiApiEnum::SET_ESSENCE, $param);
     }
 
     public function getGroupConfig($groupId)
@@ -113,7 +113,7 @@ trait GroupManageAPi
             'target' => $groupId,
         ];
 
-        return $this->query(ApiEnum::GROUP_CONFIG, $param);
+        return $this->query(MiraiApiEnum::GROUP_CONFIG, $param);
     }
 
     /**
@@ -133,7 +133,7 @@ trait GroupManageAPi
             'config' => $config,
         ];
 
-        return $this->post(ApiEnum::GROUP_CONFIG, $param);
+        return $this->post(MiraiApiEnum::GROUP_CONFIG, $param);
     }
 
     /***
@@ -151,7 +151,7 @@ trait GroupManageAPi
             'memberId' => $memberId,
         ];
 
-        return $this->query(ApiEnum::MEMBER_INFO, $param);
+        return $this->query(MiraiApiEnum::MEMBER_INFO, $param);
     }
 
     /**
@@ -173,7 +173,7 @@ trait GroupManageAPi
             'info' => $info,
         ];
 
-        return $this->post(ApiEnum::MEMBER_INFO, $param);
+        return $this->post(MiraiApiEnum::MEMBER_INFO, $param);
     }
 
     /**+
@@ -202,6 +202,6 @@ trait GroupManageAPi
             'message' => $message,
         ];
 
-        return $this->post(ApiEnum::ADD_GROUP_MEMBER_REQUEST, $param);
+        return $this->post(MiraiApiEnum::ADD_GROUP_MEMBER_REQUEST, $param);
     }
 }

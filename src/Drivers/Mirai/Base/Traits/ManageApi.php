@@ -11,7 +11,7 @@
 
 namespace Blankqwq\Mirai\Drivers\Mirai\Base\Traits;
 
-use Blankqwq\Mirai\Enums\ApiEnum;
+use Blankqwq\Mirai\Enums\MiraiApiEnum;
 
 trait ManageApi
 {
@@ -26,7 +26,7 @@ trait ManageApi
             'target' => $target,
         ];
 
-        return $this->post(ApiEnum::DELETE_FRIEND, $param);
+        return $this->post(MiraiApiEnum::DELETE_FRIEND, $param);
     }
 
     /**
@@ -48,7 +48,7 @@ trait ManageApi
             'message' => $message,
         ];
 
-        return $this->post(ApiEnum::ADD_FRIEND_REQUEST, $param);
+        return $this->post(MiraiApiEnum::ADD_FRIEND_REQUEST, $param);
     }
 
     /**
@@ -70,7 +70,7 @@ trait ManageApi
             'message' => $message,
         ];
 
-        return $this->post(ApiEnum::INVITE_ROBOT_REQUEST, $param);
+        return $this->post(MiraiApiEnum::INVITE_ROBOT_REQUEST, $param);
     }
 
     /**
@@ -84,7 +84,7 @@ trait ManageApi
             'command' => $command,
         ];
 
-        return $this->post(ApiEnum::COMMAND, $param);
+        return $this->post(MiraiApiEnum::COMMAND, $param);
     }
 
     /**
@@ -92,7 +92,7 @@ trait ManageApi
      */
     public function getFriendList()
     {
-        return $this->query(ApiEnum::GET_FRIENDS);
+        return $this->query(MiraiApiEnum::GET_FRIENDS);
     }
 
     /**
@@ -107,7 +107,7 @@ trait ManageApi
      */
     public function getRobotInfo()
     {
-        return $this->query(ApiEnum::GET_ROBOT);
+        return $this->query(MiraiApiEnum::GET_ROBOT);
     }
 
     /**
@@ -130,6 +130,6 @@ trait ManageApi
             'target' => $target,
         ];
 
-        return $this->query(ApiEnum::GET_FRIEND_INFO, $param);
+        return $this->query(MiraiApiEnum::GET_FRIEND_INFO, $param);
     }
 }

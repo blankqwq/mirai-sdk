@@ -3,7 +3,7 @@
 namespace Blankqwq\Mirai\Drivers\Mirai\Base\Traits;
 
 use Blankqwq\Exceptions\MiraiHttpException;
-use Blankqwq\Mirai\Enums\ApiEnum;
+use Blankqwq\Mirai\Enums\MiraiApiEnum;
 use Blankqwq\Mirai\Exceptions\MiraiException;
 
 trait AuthApi
@@ -20,7 +20,7 @@ trait AuthApi
             'verifyKey' => $verify,
         ];
 
-        return $this->post(ApiEnum::VERIFY, $param);
+        return $this->post(MiraiApiEnum::VERIFY, $param);
     }
 
     /**
@@ -36,7 +36,7 @@ trait AuthApi
             'sessionKey' => $sessionKey,
         ];
 
-        return $this->post(ApiEnum::BIND, $param);
+        return $this->post(MiraiApiEnum::BIND, $param);
     }
 
     /**
@@ -52,7 +52,7 @@ trait AuthApi
             'sessionKey' => $sessionKey,
         ];
 
-        return $this->post(ApiEnum::RELEASE, $param);
+        return $this->post(MiraiApiEnum::RELEASE, $param);
     }
 
     /**
@@ -60,7 +60,7 @@ trait AuthApi
      */
     public function countMessage(): array
     {
-        return $this->query(ApiEnum::COUNT_MESSAGE, []);
+        return $this->query(MiraiApiEnum::COUNT_MESSAGE, []);
     }
 
     /**
@@ -69,7 +69,7 @@ trait AuthApi
      */
     public function about(): array
     {
-        return $this->query(ApiEnum::ABOUT, []);
+        return $this->query(MiraiApiEnum::ABOUT, []);
     }
 
 }

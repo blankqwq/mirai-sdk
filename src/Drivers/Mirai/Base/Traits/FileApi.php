@@ -11,7 +11,7 @@
 
 namespace Blankqwq\Mirai\Drivers\Mirai\Base\Traits;
 
-use Blankqwq\Mirai\Enums\ApiEnum;
+use Blankqwq\Mirai\Enums\MiraiApiEnum;
 
 trait FileApi
 {
@@ -27,7 +27,7 @@ trait FileApi
             'img' => $image,
         ];
 
-        return $this->post(ApiEnum::UPLOAD_IMAGE, $param);
+        return $this->post(MiraiApiEnum::UPLOAD_IMAGE, $param);
     }
 
     /**
@@ -43,7 +43,7 @@ trait FileApi
             'voice' => $voice,
         ];
 
-        return $this->post(ApiEnum::UPLOAD_VOICE, $param);
+        return $this->post(MiraiApiEnum::UPLOAD_VOICE, $param);
     }
 
     public function upload($type, $path, $file): array
@@ -54,7 +54,7 @@ trait FileApi
             'file' => $file,
         ];
 
-        return $this->post(ApiEnum::UPLOAD_FILE, $param);
+        return $this->post(MiraiApiEnum::UPLOAD_FILE, $param);
     }
 
     public function unlink($id, $target, $type)
@@ -63,7 +63,7 @@ trait FileApi
                 'id' => $id,
             ] + $this->makeTargetParam($target, $type);
 
-        return $this->post(ApiEnum::DELETE_FILE, $param);
+        return $this->post(MiraiApiEnum::DELETE_FILE, $param);
     }
 
     public function rename($id, $target, $type, $renameTo)
@@ -73,7 +73,7 @@ trait FileApi
                 'renameTo' => $renameTo,
             ] + $this->makeTargetParam($target, $type);
 
-        return $this->post(ApiEnum::RENAME_FILE, $param);
+        return $this->post(MiraiApiEnum::RENAME_FILE, $param);
     }
 
     public function move($id, $target, $type, $moveTo)
@@ -83,7 +83,7 @@ trait FileApi
                 'moveTo' => $moveTo,
             ] + $this->makeTargetParam($target, $type);
 
-        return $this->post(ApiEnum::MOVE_FILE, $param);
+        return $this->post(MiraiApiEnum::MOVE_FILE, $param);
     }
 
     public function mkdir($id, $target, $type, $directoryName)
@@ -93,7 +93,7 @@ trait FileApi
                 'directoryName' => $directoryName,
             ] + $this->makeTargetParam($target, $type);
 
-        return $this->post(ApiEnum::MAKE_DIR, $param);
+        return $this->post(MiraiApiEnum::MAKE_DIR, $param);
     }
 
     /**
@@ -127,7 +127,7 @@ trait FileApi
                 'size' => $size,
             ] + $this->makeTargetParam($target, $type);
 
-        return $this->query(ApiEnum::GET_FILE_LIST, $param);
+        return $this->query(MiraiApiEnum::GET_FILE_LIST, $param);
     }
 
     /**
@@ -144,7 +144,7 @@ trait FileApi
                 'withDownloadInfo' => $withDownloadInfo,
             ] + $this->makeTargetParam($target, $type);
 
-        return $this->query(ApiEnum::GET_FILE_INFO, $param);
+        return $this->query(MiraiApiEnum::GET_FILE_INFO, $param);
     }
 
     /**
