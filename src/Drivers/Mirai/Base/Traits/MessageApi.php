@@ -38,19 +38,24 @@ trait MessageApi
 
     /**
      * @param $user_id
-     * @param $message
-     * @param false $messageChain
+     * @param $group_id
+     * @param $messageChain
+     * @param null $messageId
      *
      * @return mixed
      */
-    public function sendTempMsg($user_id, $message, $messageChain = false)
+     public function sendTempMsg($user_id, $group_id, $messageChain, $messageId = null);
     {
         $param = [
-            'target' => $user_id,
-            'quote' => $message,
+            'qq' => $user_id,
+            'group_id' => $group_id
             'messageChain' => $messageChain,
         ];
-
+        
+        if ($messageId) {
+            $param['quote'] = $messageId;
+        }
+        
         return $this->send(MiraiApiEnum::SEND_TEMP_MESSAGE, $param);
     }
 

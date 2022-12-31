@@ -15,7 +15,7 @@ interface MessageApiContract
 {
     public function sendFriendMsg($user_id, $message, $messageChain = false);
 
-    public function sendTempMsg($user_id, $message, $messageChain = false);
+     public function sendTempMsg($user_id, $group_id, $messageChain, $messageId = null);
 
     public function sendGroupMsg($group_id, $messageChain = [], $messageId = null);
 
