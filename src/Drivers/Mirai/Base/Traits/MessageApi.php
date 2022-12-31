@@ -44,7 +44,7 @@ trait MessageApi
      *
      * @return mixed
      */
-     public function sendTempMsg($user_id, $group_id, $messageChain, $messageId = null);
+    public function sendTempMsg($user_id, $group_id, $messageChain, $messageId = null)
     {
         $param = [
             'qq' => $user_id,
