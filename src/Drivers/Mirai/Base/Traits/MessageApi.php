@@ -48,7 +48,7 @@ trait MessageApi
     {
         $param = [
             'qq' => $user_id,
-            'group_id' => $group_id
+            'group_id' => $group_id,
             'messageChain' => $messageChain,
         ];
         
